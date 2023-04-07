@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
   <link href="https://wicg.github.io/turtledove/" rel="canonical">
-  <meta content="e140cf0e45cafbd7f731c214a8d6182ba786b8e4" name="document-revision">
+  <meta content="0199a6a1e84fc1f616482186bffb40fea347c153" name="document-revision">
 <style>/* style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -598,7 +598,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref allcaps" id="title">FLEDGE</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2023-04-06">6 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2023-04-07">7 April 2023</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -942,10 +942,34 @@ This can <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw
      </ol>
    </ol>
    <h2 class="heading settled" data-level="3" id="leaving-interest-groups"><span class="secno">3. </span><span class="content">Leaving Interest Groups</span><a class="self-link" href="#leaving-interest-groups"></a></h2>
-   <p>TODO: add this section</p>
+   <p>In order to remove a user from a particular interest group,</p>
+   <p><code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator③">navigator</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-navigator-leaveadinterestgroup" id="ref-for-dom-navigator-leaveadinterestgroup">leaveAdInterestGroup()</a></code> can be called.</p>
+   <p>TODO: Edit the following from the explainer. As a special case to support in-ad UIs, invoking
+navigator.leaveAdInterestGroup() from inside an ad that is being targeted at a particular interest
+group will cause the browser to leave that group, irrespective of permission policies. Note that
+calling navigator.leaveAdInterestGroup() without arguments isn’t supported inside a component ad
+frame.</p>
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>]
+<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator①"><c- g>Navigator</c-></a> {
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①"><c- b>undefined</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-navigator-leaveadinterestgroup" id="ref-for-dom-navigator-leaveadinterestgroup①"><c- g>leaveAdInterestGroup</c-></a>(<a data-link-type="idl-name" href="#dictdef-auctionadinterestgroupkey" id="ref-for-dictdef-auctionadinterestgroupkey"><c- n>AuctionAdInterestGroupKey</c-></a> <dfn class="idl-code" data-dfn-for="Navigator/leaveAdInterestGroup(group)" data-dfn-type="argument" data-export id="dom-navigator-leaveadinterestgroup-group-group"><code><c- g>group</c-></code><a class="self-link" href="#dom-navigator-leaveadinterestgroup-group-group"></a></dfn>);
+};
+
+<c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-auctionadinterestgroupkey"><code><c- g>AuctionAdInterestGroupKey</c-></code></dfn> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString⑧"><c- b>USVString</c-></a> <dfn class="idl-code" data-dfn-for="AuctionAdInterestGroupKey" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadinterestgroupkey-owner"><code><c- g>owner</c-></code><a class="self-link" href="#dom-auctionadinterestgroupkey-owner"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString⑨"><c- b>USVString</c-></a> <dfn class="idl-code" data-dfn-for="AuctionAdInterestGroupKey" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadinterestgroupkey-name"><code><c- g>name</c-></code><a class="self-link" href="#dom-auctionadinterestgroupkey-name"></a></dfn>;
+};
+</pre>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="method" data-export id="dom-navigator-leaveadinterestgroup"><code>leaveAdInterestGroup(group)</code></dfn> method steps
+are:</p>
+   <ol>
+    <li data-md>
+     <p>Let <var>p</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise①">a new promise</a>.</p>
+    <li data-md>
+     <p>TODO... the rest (referencing <var>p</var> here so the build tool isn’t sad).</p>
+   </ol>
    <h2 class="heading settled" data-level="4" id="running-ad-auctions"><span class="secno">4. </span><span class="content">Running Ad Auctions</span><a class="self-link" href="#running-ad-auctions"></a></h2>
    <p>When a website or someone working on behalf of the website (e.g. a supply side platform, SSP) wants
-to conduct an auction to select an advertisement to display to the user, they can call the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator③">navigator</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction①">runAdAuction()</a></code> function, providing an auction configuration that
+to conduct an auction to select an advertisement to display to the user, they can call the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator④">navigator</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction①">runAdAuction()</a></code> function, providing an auction configuration that
 tells the browser how to conduct the auction and which on-device recorded interests are allowed to
 bid in the auction for the chance to display their advertisement.</p>
    <h3 class="heading settled" data-level="4.1" id="script-runners"><span class="secno">4.1. </span><span class="content">Script Runners</span><a class="self-link" href="#script-runners"></a></h3>
@@ -958,8 +982,8 @@ specification are those that explicitly list the global names provided here.</p>
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="interestgroupbiddingscriptrunnerglobalscope"><code><c- g>InterestGroupBiddingScriptRunnerGlobalScope</c-></code></dfn> {
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setbid" id="ref-for-dom-interestgroupbiddingscriptrunnerglobalscope-setbid"><c- g>setBid</c-></a>();
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setbid-generatebidoutput" id="ref-for-dom-interestgroupbiddingscriptrunnerglobalscope-setbid-generatebidoutput"><c- g>setBid</c-></a>(<a data-link-type="idl-name" href="#dictdef-generatebidoutput" id="ref-for-dictdef-generatebidoutput"><c- n>GenerateBidOutput</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setBid(generateBidOutput)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setbid-generatebidoutput-generatebidoutput"><code><c- g>generateBidOutput</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setbid-generatebidoutput-generatebidoutput"></a></dfn>);
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined①"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setpriority" id="ref-for-dom-interestgroupbiddingscriptrunnerglobalscope-setpriority"><c- g>setPriority</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setPriority(priority)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setpriority-priority-priority"><code><c- g>priority</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setpriority-priority-priority"></a></dfn>);
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride" id="ref-for-dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride"><c- g>setPrioritySignalsOverride</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString③"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setPrioritySignalsOverride(key, priority)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-key"><code><c- g>key</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-key"></a></dfn>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setPrioritySignalsOverride(key, priority)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-priority"><code><c- g>priority</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-priority"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined②"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setpriority" id="ref-for-dom-interestgroupbiddingscriptrunnerglobalscope-setpriority"><c- g>setPriority</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setPriority(priority)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setpriority-priority-priority"><code><c- g>priority</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setpriority-priority-priority"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride" id="ref-for-dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride"><c- g>setPrioritySignalsOverride</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString③"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setPrioritySignalsOverride(key, priority)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-key"><code><c- g>key</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-key"></a></dfn>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑤"><c- b>double</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupBiddingScriptRunnerGlobalScope/setPrioritySignalsOverride(key, priority)" data-dfn-type="argument" data-export id="dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-priority"><code><c- g>priority</c-></code><a class="self-link" href="#dom-interestgroupbiddingscriptrunnerglobalscope-setprioritysignalsoverride-key-priority-priority"></a></dfn>);
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed①"><c- g>Exposed</c-></a>=<c- n>InterestGroupScoringScriptRunnerGlobalScope</c->,
@@ -970,7 +994,7 @@ specification are those that explicitly list the global names provided here.</p>
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②"><c- g>Exposed</c-></a>=<c- n>InterestGroupReportingScriptRunnerGlobalScope</c->,
 <a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Global" id="ref-for-Global②"><c- g>Global</c-></a>=<a data-link-type="idl-name" href="#interestgroupreportingscriptrunnerglobalscope" id="ref-for-interestgroupreportingscriptrunnerglobalscope"><c- n>InterestGroupReportingScriptRunnerGlobalScope</c-></a>]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="interestgroupreportingscriptrunnerglobalscope"><code><c- g>InterestGroupReportingScriptRunnerGlobalScope</c-></code></dfn> {
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined③"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupreportingscriptrunnerglobalscope-sendreportto" id="ref-for-dom-interestgroupreportingscriptrunnerglobalscope-sendreportto"><c- g>sendReportTo</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString④"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupReportingScriptRunnerGlobalScope/sendReportTo(url)" data-dfn-type="argument" data-export id="dom-interestgroupreportingscriptrunnerglobalscope-sendreportto-url-url"><code><c- g>url</c-></code><a class="self-link" href="#dom-interestgroupreportingscriptrunnerglobalscope-sendreportto-url-url"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined" id="ref-for-idl-undefined④"><c- b>undefined</c-></a> <a class="idl-code" data-link-type="method" href="#dom-interestgroupreportingscriptrunnerglobalscope-sendreportto" id="ref-for-dom-interestgroupreportingscriptrunnerglobalscope-sendreportto"><c- g>sendReportTo</c-></a>(<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString④"><c- b>DOMString</c-></a> <dfn class="idl-code" data-dfn-for="InterestGroupReportingScriptRunnerGlobalScope/sendReportTo(url)" data-dfn-type="argument" data-export id="dom-interestgroupreportingscriptrunnerglobalscope-sendreportto-url-url"><code><c- g>url</c-></code><a class="self-link" href="#dom-interestgroupreportingscriptrunnerglobalscope-sendreportto-url-url"></a></dfn>);
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-adrender"><code><c- g>AdRender</c-></code></dfn> {
@@ -1055,7 +1079,7 @@ specification are those that explicitly list the global names provided here.</p>
         <p>Return false if any of the following conditions hold:</p>
         <ul>
          <li data-md>
-          <p>biddingScriptRunner’s adComonents parameter does not exist; TODO: rewrite.</p>
+          <p>biddingScriptRunner’s adComponents parameter does not exist; TODO: rewrite.</p>
          <li data-md>
           <p><var>adComponents</var> is not an array;</p>
          <li data-md>
@@ -1202,7 +1226,7 @@ integrate this into generateBid().</p>
      The <dfn class="dfn-paneled idl-code" data-dfn-for="InterestGroupReportingScriptRunnerGlobalScope" data-dfn-type="method" data-export id="dom-interestgroupreportingscriptrunnerglobalscope-sendreportto"><code>sendReportTo(<var>url</var>)</code></dfn> method steps are: 
     <ol>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://www.w3.org/TR/WebCryptoAPI/#concept-throw" id="ref-for-concept-throw">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑦">TypeError</a></code> and clears report url if any of the following conditions hold:</p>
+      <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑧">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑦">TypeError</a></code> and clears report url if any of the following conditions hold:</p>
       <ul>
        <li data-md>
         <p>The API is called more than once;</p>
@@ -1216,26 +1240,26 @@ integrate this into generateBid().</p>
     </ol>
    </div>
    <h3 class="heading settled" data-level="4.2" id="runadauction"><span class="secno">4.2. </span><span class="content">runAdAuction()</span><a class="self-link" href="#runadauction"></a></h3>
-<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext①"><c- g>SecureContext</c-></a>]
-<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator①"><c- g>Navigator</c-></a> {
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString⑧"><c- b>USVString</c-></a>?> <a class="idl-code" data-link-type="method" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction②"><c- g>runAdAuction</c-></a>(<a data-link-type="idl-name" href="#dictdef-auctionadconfig" id="ref-for-dictdef-auctionadconfig"><c- n>AuctionAdConfig</c-></a> <dfn class="idl-code" data-dfn-for="Navigator/runAdAuction(config)" data-dfn-type="argument" data-export id="dom-navigator-runadauction-config-config"><code><c- g>config</c-></code><a class="self-link" href="#dom-navigator-runadauction-config-config"></a></dfn>);
+<pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext" id="ref-for-SecureContext②"><c- g>SecureContext</c-></a>]
+<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator②"><c- g>Navigator</c-></a> {
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise②"><c- b>Promise</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⓪"><c- b>USVString</c-></a>?> <a class="idl-code" data-link-type="method" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction②"><c- g>runAdAuction</c-></a>(<a data-link-type="idl-name" href="#dictdef-auctionadconfig" id="ref-for-dictdef-auctionadconfig"><c- n>AuctionAdConfig</c-></a> <dfn class="idl-code" data-dfn-for="Navigator/runAdAuction(config)" data-dfn-type="argument" data-export id="dom-navigator-runadauction-config-config"><code><c- g>config</c-></code><a class="self-link" href="#dom-navigator-runadauction-config-config"></a></dfn>);
 };
 
 <c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-auctionadconfig"><code><c- g>AuctionAdConfig</c-></code></dfn> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString⑨"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-seller"><code><c- g>seller</c-></code></dfn>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⓪"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-decisionlogicurl"><code><c- g>decisionLogicUrl</c-></code></dfn>;
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①①"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-trustedscoringsignalsurl"><code><c- g>trustedScoringSignalsUrl</c-></code></dfn>;
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①②"><c- b>USVString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="sequence<USVString> " id="dom-auctionadconfig-interestgroupbuyers"><code><c- g>interestGroupBuyers</c-></code></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①①"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-seller"><code><c- g>seller</c-></code></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①②"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-decisionlogicurl"><code><c- g>decisionLogicUrl</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①③"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-trustedscoringsignalsurl"><code><c- g>trustedScoringSignalsUrl</c-></code></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence④"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①④"><c- b>USVString</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="sequence<USVString> " id="dom-auctionadconfig-interestgroupbuyers"><code><c- g>interestGroupBuyers</c-></code></dfn>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any②"><c- b>any</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="any " id="dom-auctionadconfig-auctionsignals"><code><c- g>auctionSignals</c-></code></dfn>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any③"><c- b>any</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="any " id="dom-auctionadconfig-sellersignals"><code><c- g>sellerSignals</c-></code></dfn>;
-  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①③"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-directfromsellersignals"><code><c- g>directFromSellerSignals</c-></code></dfn>;
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑤"><c- b>USVString</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="USVString " id="dom-auctionadconfig-directfromsellersignals"><code><c- g>directFromSellerSignals</c-></code></dfn>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="unsigned long long " id="dom-auctionadconfig-sellertimeout"><code><c- g>sellerTimeout</c-></code></dfn>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short"><c- b>unsigned</c-> <c- b>short</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="unsigned short " id="dom-auctionadconfig-sellerexperimentgroupid"><code><c- g>sellerExperimentGroupId</c-></code></dfn>;
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record②"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①④"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any④"><c- b>any</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, any> " id="dom-auctionadconfig-perbuyersignals"><code><c- g>perBuyerSignals</c-></code></dfn>;
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record③"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑤"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long①"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, unsigned long long> " id="dom-auctionadconfig-perbuyertimeouts"><code><c- g>perBuyerTimeouts</c-></code></dfn>;
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record④"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑥"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, unsigned short> " id="dom-auctionadconfig-perbuyergrouplimits"><code><c- g>perBuyerGroupLimits</c-></code></dfn>;
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record⑤"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑦"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short②"><c- b>unsigned</c-> <c- b>short</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, unsigned short> " id="dom-auctionadconfig-perbuyerexperimentgroupids"><code><c- g>perBuyerExperimentGroupIds</c-></code></dfn>;
-  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record⑥"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑧"><c- b>USVString</c-></a>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record⑦"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑨"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, record<USVString, double>> " id="dom-auctionadconfig-perbuyerprioritysignals"><code><c- g>perBuyerPrioritySignals</c-></code></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record②"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑥"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any④"><c- b>any</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, any> " id="dom-auctionadconfig-perbuyersignals"><code><c- g>perBuyerSignals</c-></code></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record③"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑦"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long①"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, unsigned long long> " id="dom-auctionadconfig-perbuyertimeouts"><code><c- g>perBuyerTimeouts</c-></code></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record④"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑧"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short①"><c- b>unsigned</c-> <c- b>short</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, unsigned short> " id="dom-auctionadconfig-perbuyergrouplimits"><code><c- g>perBuyerGroupLimits</c-></code></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record⑤"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString①⑨"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short②"><c- b>unsigned</c-> <c- b>short</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, unsigned short> " id="dom-auctionadconfig-perbuyerexperimentgroupids"><code><c- g>perBuyerExperimentGroupIds</c-></code></dfn>;
+  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record⑥"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString②⓪"><c- b>USVString</c-></a>, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-record" id="ref-for-idl-record⑦"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString" id="ref-for-idl-USVString②①"><c- b>USVString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double⑨"><c- b>double</c-></a>>> <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="record<USVString, record<USVString, double>> " id="dom-auctionadconfig-perbuyerprioritysignals"><code><c- g>perBuyerPrioritySignals</c-></code></dfn>;
   <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence" id="ref-for-idl-sequence⑤"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-auctionadconfig" id="ref-for-dictdef-auctionadconfig①"><c- n>AuctionAdConfig</c-></a>> <dfn class="dfn-paneled idl-code" data-default="[]" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="sequence<AuctionAdConfig> " id="dom-auctionadconfig-componentauctions"><code><c- g>componentAuctions</c-></code></dfn> = [];
   <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#abortsignal" id="ref-for-abortsignal"><c- n>AbortSignal</c-></a>? <dfn class="dfn-paneled idl-code" data-dfn-for="AuctionAdConfig" data-dfn-type="dict-member" data-export data-type="AbortSignal? " id="dom-auctionadconfig-signal"><code><c- g>signal</c-></code></dfn>;
 };
@@ -1246,13 +1270,13 @@ integrate this into generateBid().</p>
      <li data-md>
       <p>Let <var>global</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this" id="ref-for-this②">this</a>'s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global" id="ref-for-concept-relevant-global①">relevant global object</a>.</p>
      <li data-md>
-      <p>If <var>global</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window①">associated Document</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use" id="ref-for-allowed-to-use①">allowed to use</a> the "<a data-link-type="dfn" href="#run-ad-auction" id="ref-for-run-ad-auction">run-ad-auction</a>" <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature①">policy-controlled feature</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑧">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
+      <p>If <var>global</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#concept-document-window" id="ref-for-concept-document-window①">associated Document</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use" id="ref-for-allowed-to-use①">allowed to use</a> the "<a data-link-type="dfn" href="#run-ad-auction" id="ref-for-run-ad-auction">run-ad-auction</a>" <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature①">policy-controlled feature</a>, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑨">throw</a> a "<code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#notallowederror" id="ref-for-notallowederror①">NotAllowedError</a></code>" <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code>.</p>
      <li data-md>
       <p>Let <var>auctionConfig</var> be the result of running <a data-link-type="dfn" href="#validate-and-convert-auction-ad-config" id="ref-for-validate-and-convert-auction-ad-config">validate and convert auction ad config</a> with <var>config</var> and <a data-link-type="dfn" href="#validate-and-convert-auction-ad-config-istoplevel" id="ref-for-validate-and-convert-auction-ad-config-istoplevel">isTopLevel</a> set to true.</p>
      <li data-md>
       <p>If <var>auctionConfig</var> is failure, then return <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-promise-rejected-with" id="ref-for-a-promise-rejected-with">a promise rejected with</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑧">TypeError</a></code>.</p>
      <li data-md>
-      <p>Let <var>p</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise①">a new promise</a>.</p>
+      <p>Let <var>p</var> be <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#a-new-promise" id="ref-for-a-new-promise②">a new promise</a>.</p>
      <li data-md>
       <p>If <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-signal" id="ref-for-dom-auctionadconfig-signal">signal</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①③">exists</a>, then:</p>
       <ol>
@@ -1302,7 +1326,7 @@ URL.</p>
       <p>Let <var>seller</var> be the result of running the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser" id="ref-for-concept-url-parser⑥">URL parser</a> on <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-seller" id="ref-for-dom-auctionadconfig-seller">seller</a></code>"].</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw⑨">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑨">TypeError</a></code> if <var>seller</var> is an error, or its <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme④">scheme</a> is not
+        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⓪">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror⑨">TypeError</a></code> if <var>seller</var> is an error, or its <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme④">scheme</a> is not
 "<code>https</code>".</p>
        <li data-md>
         <p>Set <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-seller" id="ref-for-auction-config-seller">seller</a> to <var>seller</var>.</p>
@@ -1311,7 +1335,7 @@ URL.</p>
       <p>Let <var>decisionLogicUrl</var> be the result of running the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser" id="ref-for-concept-url-parser⑦">URL parser</a> on <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-decisionlogicurl" id="ref-for-dom-auctionadconfig-decisionlogicurl">decisionLogicUrl</a></code>"].</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⓪">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⓪">TypeError</a></code> if <var>decisionLogicUrl</var> is an error, or it is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin①">same origin</a> with <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-seller" id="ref-for-auction-config-seller①">seller</a>.</p>
+        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①①">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⓪">TypeError</a></code> if <var>decisionLogicUrl</var> is an error, or it is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin①">same origin</a> with <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-seller" id="ref-for-auction-config-seller①">seller</a>.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert">Assert</a>: <var>decisionLogicUrl</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme⑤">scheme</a> is "<code>https</code>".</p>
        <li data-md>
@@ -1323,7 +1347,7 @@ URL.</p>
        <li data-md>
         <p>Let <var>trustedScoringSignalsUrl</var> be the result of running the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser" id="ref-for-concept-url-parser⑧">URL parser</a> on <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-trustedscoringsignalsurl" id="ref-for-dom-auctionadconfig-trustedscoringsignalsurl①">trustedScoringSignalsUrl</a></code>"].</p>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①①">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①①">TypeError</a></code> if <var>trustedScoringSignalsUrl</var> is an error,
+        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①②">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①①">TypeError</a></code> if <var>trustedScoringSignalsUrl</var> is an error,
 or it is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin②">same origin</a> with <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-seller" id="ref-for-auction-config-seller②">seller</a>.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#assert" id="ref-for-assert①">Assert</a>: <var>trustedScoringSignalsUrl</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme⑥">scheme</a> is "<code>https</code>".</p>
@@ -1338,7 +1362,7 @@ or it is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipag
         <ol>
          <li data-md>
           <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin">parsing an origin</a> with <var>buyerString</var>. If <var>buyer</var> is an
-error, or <var>buyer</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme⑦">scheme</a> is not "<code>https</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①②">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①②">TypeError</a></code>.
+error, or <var>buyer</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme⑦">scheme</a> is not "<code>https</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①③">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①②">TypeError</a></code>.
 Otherwise, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-append" id="ref-for-list-append①">append</a> <var>buyer</var> to <var>buyers</var>.</p>
         </ol>
        <li data-md>
@@ -1352,7 +1376,7 @@ Otherwise, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-app
       <p>If <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-directfromsellersignals" id="ref-for-dom-auctionadconfig-directfromsellersignals">directFromSellerSignals</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑧">exists</a>, let <var>directFromSellerSignalsPrefix</var> be the result of running the <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser" id="ref-for-concept-url-parser⑨">URL parser</a> on <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-directfromsellersignals" id="ref-for-dom-auctionadconfig-directfromsellersignals①">directFromSellerSignals</a></code>"].</p>
       <ol>
        <li data-md>
-        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①③">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①③">TypeError</a></code> if any of the following conditions hold:</p>
+        <p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①④">Throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①③">TypeError</a></code> if any of the following conditions hold:</p>
         <ul>
          <li data-md>
           <p><var>directFromSellerSignalsPrefix</var> is an error;</p>
@@ -1379,7 +1403,7 @@ milliseconds.</p>
       <p>If <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-perbuyersignals" id="ref-for-dom-auctionadconfig-perbuyersignals">perBuyerSignals</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②①">exists</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate②">for each</a> <var>key</var> → <var>value</var> of <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-perbuyersignals" id="ref-for-dom-auctionadconfig-perbuyersignals①">perBuyerSignals</a></code>"]:</p>
       <ol>
        <li data-md>
-        <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin①">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①④">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①④">TypeError</a></code>.</p>
+        <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin①">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑤">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①④">TypeError</a></code>.</p>
        <li data-md>
         <p>Let <var>signalsString</var> be the result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#serialize-a-javascript-value-to-a-json-string" id="ref-for-serialize-a-javascript-value-to-a-json-string⑤">serializing a JavaScript value to a JSON string</a>, given <var>value</var>.</p>
        <li data-md>
@@ -1391,7 +1415,7 @@ milliseconds.</p>
        <li data-md>
         <p>If <var>key</var> equals to "*", then set <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-all-buyers-timeout" id="ref-for-auction-config-all-buyers-timeout">all buyers timeout</a> to min(<var>value</var>, 500) milliseconds, and <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue">continue</a>.</p>
        <li data-md>
-        <p>Let <var>buyer</var> the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin②">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑤">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑤">TypeError</a></code>.</p>
+        <p>Let <var>buyer</var> the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin②">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑥">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑤">TypeError</a></code>.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①">Set</a> <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-per-buyer-timeouts" id="ref-for-auction-config-per-buyer-timeouts">per buyer timeouts</a>[<var>buyer</var>] to
 min(<var>value</var>, 500) milliseconds.</p>
@@ -1400,11 +1424,11 @@ min(<var>value</var>, 500) milliseconds.</p>
       <p>If <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-perbuyergrouplimits" id="ref-for-dom-auctionadconfig-perbuyergrouplimits">perBuyerGroupLimits</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists②③">exists</a>, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate④">for each</a> <var>key</var> → <var>value</var> of <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-perbuyergrouplimits" id="ref-for-dom-auctionadconfig-perbuyergrouplimits①">perBuyerGroupLimits</a></code>"]:</p>
       <ol>
        <li data-md>
-        <p>If <var>value</var> is 0, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑥">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑥">TypeError</a></code>.</p>
+        <p>If <var>value</var> is 0, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑦">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑥">TypeError</a></code>.</p>
        <li data-md>
         <p>If <var>key</var> equals to "*", then set <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-all-buyers-group-limit" id="ref-for-auction-config-all-buyers-group-limit">all buyers group limit</a> to <var>value</var>, and <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue①">continue</a>.</p>
        <li data-md>
-        <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin③">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑦">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑦">TypeError</a></code>.</p>
+        <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin③">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑧">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑦">TypeError</a></code>.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②">Set</a> <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-per-buyer-group-limits" id="ref-for-auction-config-per-buyer-group-limits">per buyer group limits</a>[<var>buyer</var>] to <var>value</var>.</p>
       </ol>
@@ -1414,7 +1438,7 @@ min(<var>value</var>, 500) milliseconds.</p>
        <li data-md>
         <p>If <var>key</var> equals to "*", then set <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-all-buyer-experiment-group-id" id="ref-for-auction-config-all-buyer-experiment-group-id">all buyer experiment group id</a> to <var>value</var>, and <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue②">continue</a>.</p>
        <li data-md>
-        <p>Let <var>buyer</var> the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin④">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑧">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑧">TypeError</a></code>.</p>
+        <p>Let <var>buyer</var> the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin④">parsing an origin</a> with <var>key</var>. If <var>buyer</var> is an error, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑨">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑧">TypeError</a></code>.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set③">Set</a> <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-per-buyer-experiment-group-ids" id="ref-for-auction-config-per-buyer-experiment-group-ids">per buyer experiment group ids</a>[<var>buyer</var>] to <var>value</var>.</p>
       </ol>
@@ -1427,14 +1451,14 @@ min(<var>value</var>, 500) milliseconds.</p>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-iterate" id="ref-for-map-iterate⑦">for each</a> <var>k</var> → <var>v</var> of <var>value</var>:</p>
         <ol>
          <li data-md>
-          <p>If <var>k</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-starts-with" id="ref-for-string-starts-with">starts with</a> "browserSignals.", <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw①⑨">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑨">TypeError</a></code>.</p>
+          <p>If <var>k</var> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string-starts-with" id="ref-for-string-starts-with">starts with</a> "browserSignals.", <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⓪">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①⑨">TypeError</a></code>.</p>
          <li data-md>
           <p>Set <var>signals</var>[<var>k</var>] to <var>v</var>.</p>
         </ol>
        <li data-md>
         <p>If <var>key</var> equals to "*", then set <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-all-buyers-priority-signals" id="ref-for-auction-config-all-buyers-priority-signals">all buyers priority signals</a> to <var>value</var>, and <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue③">continue</a>.</p>
        <li data-md>
-        <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin⑤">parsing an origin</a> with <var>key</var>. If it fails, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②⓪">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②⓪">TypeError</a></code>.</p>
+        <p>Let <var>buyer</var> be the result of <a data-link-type="dfn" href="#parse-an-origin" id="ref-for-parse-an-origin⑤">parsing an origin</a> with <var>key</var>. If it fails, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②①">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②⓪">TypeError</a></code>.</p>
        <li data-md>
         <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set④">Set</a> <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-per-buyer-priority-signals" id="ref-for-auction-config-per-buyer-priority-signals">per buyer priority signals</a>[<var>buyer</var>] to <var>signals</var>.</p>
       </ol>
@@ -1442,7 +1466,7 @@ min(<var>value</var>, 500) milliseconds.</p>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑤">For each</a> <var>component</var> in <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-componentauctions" id="ref-for-dom-auctionadconfig-componentauctions">componentAuctions</a></code>"]:</p>
       <ol>
        <li data-md>
-        <p>If <var>isTopLevel</var> is false, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②①">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②①">TypeError</a></code>.</p>
+        <p>If <var>isTopLevel</var> is false, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw" id="ref-for-dfn-throw②②">throw</a> a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②①">TypeError</a></code>.</p>
        <li data-md>
         <p>Let <var>componentAuction</var> be the result of running <a data-link-type="dfn" href="#validate-and-convert-auction-ad-config" id="ref-for-validate-and-convert-auction-ad-config①">validate and convert auction ad config</a> with <var>component</var> and <a data-link-type="dfn" href="#validate-and-convert-auction-ad-config-istoplevel" id="ref-for-validate-and-convert-auction-ad-config-istoplevel①">isTopLevel</a> set to false.</p>
        <li data-md>
@@ -1670,6 +1694,8 @@ to "generateBid", and <a data-link-type="dfn" href="#evaluate-script-arguments" 
              <li data-md>
               <p>If <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bid-bid" id="ref-for-generated-bid-bid①">bid</a> is negative or 0, <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#iteration-continue" id="ref-for-iteration-continue⑥">continue</a>.</p>
              <li data-md>
+              <p>Set <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group">interest group</a> to <var>ig</var>.</p>
+             <li data-md>
               <p>TODO: Validate other fields of <var>generatedBid</var>.</p>
              <li data-md>
               <p><a data-link-type="dfn" href="#score-and-rank-a-bid" id="ref-for-score-and-rank-a-bid①">Score and rank a bid</a> with <var>auctionConfig</var>, <var>generatedBid</var>, <var>leadingBidInfo</var>, <var>desisionLogicScript</var> and false.</p>
@@ -1701,13 +1727,14 @@ to "generateBid", and <a data-link-type="dfn" href="#evaluate-script-arguments" 
      <li data-md>
       <p>TODO: Set <var>browserSignals</var>’s "topWindowHostname" to hostname of top window</p>
      <li data-md>
-      <p>TODO: Set <var>browserSignals</var>’s "interestGroupOwner" to ...need to pass in IG</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①③">Set</a> <var>browserSignals</var>["interestGroupOwner"] to <var>generatedBid</var>’s
+[=generated bid/interest group]'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner⑤">owner</a>.</p>
      <li data-md>
-      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①③">Set</a> <var>browserSignals</var>["renderUrl"] to <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor②">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url③">url</a>.</p>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①④">Set</a> <var>browserSignals</var>["renderUrl"] to <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor②">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url③">url</a>.</p>
      <li data-md>
       <p>TODO: Set <var>browserSignals</var>’s "adComponents" to ...need to pass in as part of <var>generatedBid</var></p>
      <li data-md>
-      <p>TODO: Set <var>browserSignals</var>’s "biddingDurationMsec" to ...need to calculate nad pass in</p>
+      <p>TODO: Set <var>browserSignals</var>’s "biddingDurationMsec" to ...need to calculate and pass in</p>
      <li data-md>
       <p>TODO: Set <var>browserSignals</var>’s "dataVersion" ...to Data-Version value from the trusted scoring
 signals server’s response.</p>
@@ -1958,17 +1985,70 @@ https://html.spec.whatwg.org/multipage/document-lifecycle.html#shared-document-c
     <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="generate-reporting-urls">generate reporting URLs</dfn> given an <code class="idl"><a data-link-type="idl" href="#dictdef-auctionadconfig" id="ref-for-dictdef-auctionadconfig③">AuctionAdConfig</a></code> <var>config</var> and a <a data-link-type="dfn" href="#generated-bid" id="ref-for-generated-bid③">generated bid</a> <var>bid</var>:</p>
     <ol>
      <li data-md>
-      <p>TODO: Fetch buyer reporting script...though first we need the IG.</p>
+      <p>Let <var>sellerReportingScript</var> be the result of <a data-link-type="dfn" href="#fetch-resource" id="ref-for-fetch-resource③">fetching resource</a> with <var>config</var>’s <a data-link-type="dfn" href="#auction-config-decision-logic-url" id="ref-for-auction-config-decision-logic-url②">decision logic url</a>, and "text/javascript".</p>
      <li data-md>
-      <p>TODO: Calculate all params to reportWin() using <var>bid</var>.</p>
+      <p>Let <var>auctionSignals</var> be <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-auction-signals" id="ref-for-auction-config-auction-signals②">auction signals</a>.</p>
      <li data-md>
-      <p>TODO: Evaluate reportWin() with params and scope that includes sendReportTo().</p>
+      <p>Let <var>browserSignals</var> be an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys④">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①①">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values④">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-any" id="ref-for-idl-any⑦">any</a></code>.</p>
      <li data-md>
-      <p>TODO: Fetch seller reporting script from <var>config</var>’s field.</p>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①⑤">Set</a> <var>browserSignals</var>["topWindowHostname"] to hostname of top window.</p>
      <li data-md>
-      <p>TODO: Calculate all params to reportResult().</p>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①⑥">Set</a> <var>browserSignals</var>["topLevelSeller"] to the top level seller.</p>
      <li data-md>
-      <p>TODO: Evaluate reportResult() with params and scope that includes sendReportTo().</p>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①⑦">Set</a> <var>browserSignals</var>["componentSeller"] to the component seller.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①⑧">Set</a> <var>browserSignals</var>["interestGroupOwner"] to <var>bid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group①">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner⑥">owner</a>.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set①⑨">Set</a> <var>browserSignals</var>["renderUrl"] to <var>bid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor③">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url④">url</a>.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②⓪">Set</a> <var>browserSignals</var>["bid"] to <var>bid</var>’s <a data-link-type="dfn" href="#generated-bid-bid" id="ref-for-generated-bid-bid④">bid</a>.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②①">Set</a> <var>browserSignals</var>["desirability"] to the desirability score.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②②">Set</a> <var>browserSignals</var>["topLevelSellerSignals] to the top level sellers signals.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②③">Set</a> <var>browserSignals</var>["dataVersion"] to the version from the key value response.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②④">Set</a> <var>browserSignals</var>["modifiedBid"] to the modified bid value.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②⑤">Set</a> <var>browserSignals</var>["highestScoringOtherBid"] to the highest scoring other bid
+value.</p>
+     <li data-md>
+      <p>TODO: Let <var>sellerSignals</var> be the result of <a data-link-type="dfn" href="#evaluate-script" id="ref-for-evaluate-script②">evaluating script</a> with <a data-link-type="dfn" href="#evaluate-script-script" id="ref-for-evaluate-script-script②">script</a> set to <var>sellerReportingScript</var>, <a data-link-type="dfn" href="#evaluate-script-functionname" id="ref-for-evaluate-script-functionname②">functionName</a> set
+to "reportResult", and <a data-link-type="dfn" href="#evaluate-script-arguments" id="ref-for-evaluate-script-arguments②">arguments</a> set to « <var>auctionSignals</var>, <var>browserSignals</var> ».</p>
+     <li data-md>
+      <p>Let <var>buyerReportingScript</var> be the result of <a data-link-type="dfn" href="#fetch-resource" id="ref-for-fetch-resource④">fetching resource</a> with <var>bid</var>’s
+[=generated bid/interest group=|'s <a data-link-type="dfn" href="#interest-group-bidding-url" id="ref-for-interest-group-bidding-url③">bidding url</a>, and "text/javascript".</p>
+     <li data-md>
+      <p>Let <var>perBuyerSignals</var> be <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-per-buyer-signals" id="ref-for-auction-config-per-buyer-signals⑤">per buyer signals</a>[<var>browserSignals</var>["interestGroupOwner"]] if that member <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③②">exists</a>, and null otherwise.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-remove" id="ref-for-map-remove">Remove</a> <var>browserSignals</var>["desirability"].</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②⑥">Set</a> <var>browserSignals</var>["interestGroupName"] to <var>bid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group②">interest group</a>'s <a data-link-type="dfn" href="#interest-group-name" id="ref-for-interest-group-name④">name</a> if the tuple of interest group owner,
+name, bidding script URL and ad creative URL were jointly k-anonymous.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②⑦">Set</a> <var>browserSignals</var>["madeHighestScoringOtherBid"] to true if the interest group
+owner was the only bidder that made bids with the second highest score.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②⑧">Set</a> <var>browserSignals</var>["highestScoringOtherBid"] and <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set②⑨">Set</a> <var>browserSignals</var>["madeHighestScoringOtherBid"] are based on the auction the interest group was
+directly part of. If that was a component auction, they’re from the component auction. If that was
+the top-level auction, then they’re from the top-level auction. Component bidders do not get these
+signals from top-level auctions since it is the auction seller joining the top-level auction,
+instead of winning component bidders joining the top-level auction directly.</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set③⓪">Set</a> <var>browserSignals</var>["dataVersion"] to contain the Data-Version from the trusted
+bidding signals response headers if they were provided by the trusted bidding signals server
+response and the version was consistent for all keys requested by this interest group.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set③①">Set</a> <var>browserSignals</var>["seller"] to <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-seller" id="ref-for-dom-auctionadconfig-seller①">seller</a></code>"].</p>
+     <li data-md>
+      <p>TODO: <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-set" id="ref-for-map-set③②">Set</a> <var>browserSignals</var>["topLevelSeller"] if there was a top-level seller.</p>
+     <li data-md>
+      <p>TODO: Run <a data-link-type="dfn" href="#evaluate-script" id="ref-for-evaluate-script③">evaluating script</a> with <a data-link-type="dfn" href="#evaluate-script-script" id="ref-for-evaluate-script-script③">script</a> set to <var>buyerReportingScript</var>, <a data-link-type="dfn" href="#evaluate-script-functionname" id="ref-for-evaluate-script-functionname③">functionName</a> set to "reportWin", and <a data-link-type="dfn" href="#evaluate-script-arguments" id="ref-for-evaluate-script-arguments③">arguments</a> set to
+« <var>auctionSignals</var>, <var>perBuyerSignals</var>, <var>sellerSignals</var>, <var>browserSignals</var> ».</p>
+     <li data-md>
+      <p>TODO: Set URLs passed to sendReportTo() into the FencedFrameConfig so they can be fetched when
+ad renders.</p>
     </ol>
    </div>
    <h2 class="heading settled" data-level="5" id="interest-group-updates"><span class="secno">5. </span><span class="content">Interest Group Updates</span><a class="self-link" href="#interest-group-updates"></a></h2>
@@ -2036,7 +2116,7 @@ the update rate limit period + the current time.</p>
    <p class="note" role="note"><span class="marker">Note:</span> In the Chromium implementation the <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature-default-allowlist" id="ref-for-policy-controlled-feature-default-allowlist①">default allowlists</a> for both
 features are temporarily set to <code>*</code> to ease testing.</p>
    <h2 class="heading settled" data-level="7" id="structures"><span class="secno">7. </span><span class="content">Structures</span><a class="self-link" href="#structures"></a></h2>
-   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.1" data-lt="Interest group" data-noexport id="interest-group"><span class="secno">7.1. </span><span class="content">Interest group</span><a class="self-link" href="#interest-group" id="ref-for-interest-group④"></a></h3>
+   <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.1" data-lt="Interest group" data-noexport id="interest-group"><span class="secno">7.1. </span><span class="content">Interest group</span><a class="self-link" href="#interest-group" id="ref-for-interest-group⑤"></a></h3>
    <p>An interest group is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct">struct</a> with the following items:</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-expiry">expiry</dfn>
@@ -2044,10 +2124,11 @@ features are temporarily set to <code>*</code> to ease testing.</p>
      <p>A point in time at which the browser will forget about this interest group.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-owner">owner</dfn>
     <dd data-md>
-     <p>An <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin③">origin</a>.</p>
+     <p>An <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a>. Frames that join interest groups owned by <code>owner</code> must either be served from origin <code>owner</code>, or another origin delegated by <code>owner</code> (TODO: update to link to delegation section when done).
+The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme" id="ref-for-concept-origin-scheme">scheme</a> must be "<code>https</code>".</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-name">name</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①①">string</a>.</p>
+     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①②">string</a>. The (<a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner⑦">owner</a>, <a data-link-type="dfn" href="#interest-group-name" id="ref-for-interest-group-name⑤">name</a>) tuple is a key that uniquely defines each interest group.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-priority">priority</dfn>
     <dd data-md>
      <p>A <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①①">double</a></code>. Defaulting to 0.0. Used to select which interest groups participate in an auction
@@ -2058,35 +2139,40 @@ when the number of interest groups are limited by <code class="idl"><a data-link
 calculated using vectors from bidding signals fetch.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-priority-vector">priority vector</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys④">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①②">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values④">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①②">double</a></code>. Its dot product with the <code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-perbuyerprioritysignals" id="ref-for-dom-auctionadconfig-perbuyerprioritysignals②">perBuyerPrioritySignals</a></code> will be used
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑤">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑤">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①③">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑤">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①②">double</a></code>. Its dot product with the <code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-perbuyerprioritysignals" id="ref-for-dom-auctionadconfig-perbuyerprioritysignals②">perBuyerPrioritySignals</a></code> will be used
 in place of <a data-link-type="dfn" href="#interest-group-priority" id="ref-for-interest-group-priority②">priority</a>, if set.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-priority-signals-overrides">priority signals overrides</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑤">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑤">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①③">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑤">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①③">double</a></code>. Overrides the <code class="idl"><a data-link-type="idl" href="#dictdef-auctionadconfig" id="ref-for-dictdef-auctionadconfig④">AuctionAdConfig</a></code>'s corresponding priority signals.</p>
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑥">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑥">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①④">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑥">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①③">double</a></code>. Overrides the <code class="idl"><a data-link-type="idl" href="#dictdef-auctionadconfig" id="ref-for-dictdef-auctionadconfig④">AuctionAdConfig</a></code>'s corresponding priority signals.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-execution-mode">execution mode</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①④">string</a>, defaulting to "compatibility".</p>
+     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑤">string</a>, defaulting to "<code>compatibility</code>". Acceptable values are
+"<code>compatibility</code>" and "<code>group-by-origin</code>".</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-bidding-url">bidding url</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url⑤">URL</a>. The URL to fetch the buyer’s JavaScript from.</p>
+     <p class="note" role="note">The <a data-link-type="dfn" href="#interest-group-bidding-url" id="ref-for-interest-group-bidding-url④">bidding url</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin①">origin</a> will always be <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin④">same origin</a> with <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner⑧">owner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-bidding-wasm-helper-url">bidding wasm helper url</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url⑥">URL</a>. Lets the bidder provide computationally-expensive subroutines in WebAssembly,
-rather than JavaScript, to be driven from the JavaScript function provided by <a data-link-type="dfn" href="#interest-group-bidding-url" id="ref-for-interest-group-bidding-url③">bidding url</a>.</p>
+in addition to JavaScript, to be driven from the JavaScript function provided by <a data-link-type="dfn" href="#interest-group-bidding-url" id="ref-for-interest-group-bidding-url⑤">bidding url</a>.</p>
+     <p class="note" role="note">The <a data-link-type="dfn" href="#interest-group-bidding-wasm-helper-url" id="ref-for-interest-group-bidding-wasm-helper-url③">bidding wasm helper url</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin②">origin</a> will always be <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin⑤">same origin</a> with <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner⑨">owner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-daily-update-url">daily update url</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url⑦">URL</a>. Provides a mechanism for the group’s owner to periodically update the
-attributes of the interest group.</p>
+attributes of the interest group. See <a href="#interest-group-updates">interest group updates</a>.</p>
+     <p class="note" role="note">The <a data-link-type="dfn" href="#interest-group-daily-update-url" id="ref-for-interest-group-daily-update-url②">daily update url</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin③">origin</a> will always be <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin⑥">same origin</a> with <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner①⓪">owner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-trusted-bidding-signals-url">trusted bidding signals url</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url⑧">URL</a>. Provide a mechanism for making real-time data available for use at bidding
-time.</p>
+time. See <a data-link-type="dfn" href="#build-trusted-bidding-signals-url" id="ref-for-build-trusted-bidding-signals-url①">building trusted bidding signals url</a>.</p>
+     <p class="note" role="note">Note: The <a data-link-type="dfn" href="#interest-group-trusted-bidding-signals-url" id="ref-for-interest-group-trusted-bidding-signals-url④">trusted bidding signals url</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin④">origin</a> will always be <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin⑦">same origin</a> with <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner①①">owner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-trusted-bidding-signals-keys">trusted bidding signals keys</dfn>
     <dd data-md>
-     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a> of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑤">string</a>.</p>
+     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑤">list</a> of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑥">string</a>. See <a data-link-type="dfn" href="#build-trusted-bidding-signals-url" id="ref-for-build-trusted-bidding-signals-url②">building trusted bidding signals url</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-user-bidding-signals">user bidding signals</dfn>
     <dd data-md>
-     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑥">string</a>. Additional metadata that the owner can use during on-device bidding.</p>
+     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑦">string</a>. Additional metadata that the owner can use during on-device bidding.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-ads">ads</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑥">list</a> of <a data-link-type="dfn" href="#interest-group-ad" id="ref-for-interest-group-ad①">interest group ad</a>. Contains various ads that the interest group might
@@ -2098,68 +2184,71 @@ can be used to construct ads composed of multiple pieces — a top-level ad temp
 which includes some slots that can be filled in with specific "products".</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group" data-dfn-type="dfn" data-noexport id="interest-group-joining-origin">joining origin</dfn>
     <dd data-md>
-     <p>An <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin④">origin</a>.The top level page origin from where the interest group was joined.</p>
+     <p>An <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin③">origin</a>.The top level page origin from where the interest group was joined.</p>
    </dl>
-   <p>TODO: Update the short descriptions of some fields above, and add links when runAdAuction() section
+   <p>TODO: Specify the short descriptions of some fields above and below, and add links when runAdAuction() section
 is ready.</p>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.2" data-lt="Interest group ad" data-noexport id="interest-group-ad"><span class="secno">7.2. </span><span class="content">Interest group ad</span><a class="self-link" href="#interest-group-ad" id="ref-for-interest-group-ad③"></a></h3>
    <p>An interest group ad is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct①">struct</a> with the following items:</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group ad" data-dfn-type="dfn" data-noexport id="interest-group-ad-render-url">render url</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url⑨">URL</a>.</p>
+     <p>A <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url⑨">URL</a>. If this ad wins the auction, this URL (or a <a data-link-type="dfn" href="https://www.ietf.org/rfc/rfc4122.txt#urn-uuid" id="ref-for-urn-uuid">urn uuid</a> that maps to this URL) will be
+returned by <code>runAdAuction()</code>. This URL is intended to be loaded into an ad iframe (or a fenced frame).</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="interest group ad" data-dfn-type="dfn" data-noexport id="interest-group-ad-metadata">metadata</dfn>
     <dd data-md>
-     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑦">string</a>.</p>
+     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑧">string</a>. Extra arbitary information about this ad, passed to <code>generateBid()</code>.</p>
    </dl>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.3" data-lt="Auction config" data-noexport id="auction-config"><span class="secno">7.3. </span><span class="content">Auction config</span><a class="self-link" href="#auction-config" id="ref-for-auction-config⑦"></a></h3>
    <p>An auction config is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct②">struct</a> with the following items:</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-seller">seller</dfn>
     <dd data-md>
-     <p>An <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑤">origin</a>.
-The origin of the seller running the ad auction.</p>
+     <p>An <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑤">origin</a>.
+The origin of the seller running the ad auction. The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme" id="ref-for-concept-origin-scheme①">scheme</a> must be "<code>https</code>".</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-decision-logic-url">decision logic url</dfn>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①⓪">URL</a>.
 The URL to fetch the seller’s JavaScript from.</p>
+     <p class="note" role="note">The <a data-link-type="dfn" href="#auction-config-decision-logic-url" id="ref-for-auction-config-decision-logic-url③">decision logic url</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑥">origin</a> will always be <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin⑧">same origin</a> with <a data-link-type="dfn" href="#auction-config-seller" id="ref-for-auction-config-seller⑥">seller</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-trusted-scoring-signals-url">trusted scoring signals url</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①①">URL</a>.
 Provide a mechanism for making real-time data (information about a specific creative) available
 for use at scoring time, e.g. the results of some ad scanning system.</p>
+     <p class="note" role="note">The <a data-link-type="dfn" href="#auction-config-trusted-scoring-signals-url" id="ref-for-auction-config-trusted-scoring-signals-url①">trusted scoring signals url</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑦">origin</a> will always be <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin⑨">same origin</a> with <a data-link-type="dfn" href="#auction-config-seller" id="ref-for-auction-config-seller⑦">seller</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-interest-group-buyers">interest group buyers</dfn>
     <dd data-md>
-     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a> of <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑥">origin</a>.
-Owners of interest groups allowed to participate in the auction.</p>
+     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑧">list</a> of <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin④">origin</a>.
+Owners of interest groups allowed to participate in the auction. Each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑧">origin’s</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme" id="ref-for-concept-origin-scheme②">scheme</a> must be "<code>https</code>".</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-auction-signals">auction signals</dfn>
     <dd data-md>
-     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑧">string</a>.
+     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑨">string</a>.
 Opaque JSON data passed to both sellers' and buyers' script runners.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-seller-signals">seller signals</dfn>
     <dd data-md>
-     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string①⑨">string</a>.
+     <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②⓪">string</a>.
 Opaque JSON data passed to the seller’s script runner.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-seller-timeout">seller timeout</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-duration" id="ref-for-dfn-duration">duration</a>. Defaulting to 50 milliseconds.
+     <p>A <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-duration" id="ref-for-dfn-duration">duration</a> in milliseconds. Defaulting to 50 milliseconds.
 Restricts the runtime of the seller’s <code>scoreAd()</code> script.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-per-buyer-signals">per buyer signals</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑥">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑥">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑦">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑥">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②⓪">strings</a>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑦">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑦">Values</a> are opaque JSON data
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑦">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑦">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑤">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑦">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②①">strings</a>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑧">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑧">Values</a> are opaque JSON data
 passed to corresponding buyer’s script runner.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-per-buyer-timeouts">per buyer timeouts</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑦">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑧">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑧">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑧">values</a> are
-durations. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑨">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑨">Values</a> restrict the runtime of
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑧">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys⑨">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑥">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values⑨">values</a> are
+durations in milliseconds. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⓪">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⓪">Values</a> restrict the runtime of
 corresponding buyer’s <code>generateBid()</code> script.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-all-buyers-timeout">all buyers timeout</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-duration" id="ref-for-dfn-duration①">duration</a>. Defaulting to 50 milliseconds.
-Restricts the <code>generateBid()</code> script’s runtime for all buyers without a timeouts specified in <a data-link-type="dfn" href="#auction-config-per-buyer-timeouts" id="ref-for-auction-config-per-buyer-timeouts①">per buyer timeouts</a>.</p>
+     <p>A <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-duration" id="ref-for-dfn-duration①">duration</a> in milliseconds. Defaulting to 50 milliseconds.
+Restricts the <code>generateBid()</code> script’s runtime for all buyers without a timeout specified in <a data-link-type="dfn" href="#auction-config-per-buyer-timeouts" id="ref-for-auction-config-per-buyer-timeouts①">per buyer timeouts</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-per-buyer-group-limits">per buyer group limits</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑧">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⓪">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑨">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⓪">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short④">unsigned short</a></code>s. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①①">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①①">Values</a> restrict the number of
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑨">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①①">keys</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑨">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①①">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short④">unsigned short</a></code>s. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①②">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①②">Values</a> restrict the number of
 bidding interest groups for a particular buyer that can participate in an auction.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-all-buyers-group-limit">all buyers group limit</dfn>
     <dd data-md>
@@ -2167,13 +2256,13 @@ bidding interest groups for a particular buyer that can participate in an auctio
 Limit on the number of bidding interest groups for all buyers without a limit specified in <a data-link-type="dfn" href="#auction-config-per-buyer-group-limits" id="ref-for-auction-config-per-buyer-group-limits①">per buyer group limits</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-per-buyer-priority-signals">per buyer priority signals</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑨">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①②">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①⓪">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①②">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①⓪">ordered maps</a>, whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①③">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②①">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①③">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①④">double</a></code>.
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①⓪">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①③">keys</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin①⓪">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①③">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①①">ordered maps</a>, whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①④">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②②">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①④">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①④">double</a></code>.
 Per-buyer sparse vector whose dot product with <a data-link-type="dfn" href="#interest-group-priority-vector" id="ref-for-interest-group-priority-vector③">priority vector</a> is used to
 calculate interest group priorities. No signal’s key starts with "browserSignals.", which is
 reserved for values coming from the browser.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-all-buyers-priority-signals">all buyers priority signals</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①①">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①④">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②②">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①④">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑤">double</a></code>.
+     <p>Null or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①②">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑤">keys</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②③">strings</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑤">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑤">double</a></code>.
 Merged with <a data-link-type="dfn" href="#auction-config-per-buyer-priority-signals" id="ref-for-auction-config-per-buyer-priority-signals①">per buyer priority signals</a> before calculating per-interest group
 priorities. In the case both have entries with the same key, the entry in <code>per_buyer_priority_signals</code> takes precedence. No signals key start with "browserSignals.", which
 is reserved for values coming from the browser.</p>
@@ -2188,7 +2277,7 @@ Optional identifier for an experiment group to support coordinated experiments w
 trusted server.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-per-buyer-experiment-group-ids">per buyer experiment group ids</dfn>
     <dd data-md>
-     <p>An <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①②">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑤">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①①">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑤">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short⑦">unsigned short</a></code>s. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑥">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑥">Values</a> are identifiers for
+     <p>An <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①③">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑥">keys</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin①①">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑥">values</a> are <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short⑦">unsigned short</a></code>s. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑦">Keys</a> are buyers and must be valid HTTPS origins. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑦">Values</a> are identifiers for
 experiment groups, to support coordinated experiments with buyers' trusted servers.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-all-buyer-experiment-group-id">all buyer experiment group id</dfn>
     <dd data-md>
@@ -2197,9 +2286,9 @@ Optional identifier for an experiment group to support coordinated experiments w
 trusted servers for buyers without a specified experiment group.</p>
    </dl>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.4" data-lt="Per buyer bid generator" data-noexport id="per-buyer-bid-generator"><span class="secno">7.4. </span><span class="content">Per buyer bid generator</span><a class="self-link" href="#per-buyer-bid-generator" id="ref-for-per-buyer-bid-generator②"></a></h3>
-   <p>A per buyer bid generator is an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①③">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑦">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①②">URLs</a> representing <a data-link-type="dfn" href="#interest-group-trusted-bidding-signals-url" id="ref-for-interest-group-trusted-bidding-signals-url④">trusted bidding signals urls</a>, and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑦">values</a> are <a data-link-type="dfn" href="#per-signals-url-bid-generator" id="ref-for-per-signals-url-bid-generator②">per signals url bid generators</a>.</p>
+   <p>A per buyer bid generator is an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①④">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑧">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①②">URLs</a> representing <a data-link-type="dfn" href="#interest-group-trusted-bidding-signals-url" id="ref-for-interest-group-trusted-bidding-signals-url⑤">trusted bidding signals urls</a>, and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑧">values</a> are <a data-link-type="dfn" href="#per-signals-url-bid-generator" id="ref-for-per-signals-url-bid-generator②">per signals url bid generators</a>.</p>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.5" data-lt="Per signals url bid generator" data-noexport id="per-signals-url-bid-generator"><span class="secno">7.5. </span><span class="content">Per signals url bid generator</span><a class="self-link" href="#per-signals-url-bid-generator" id="ref-for-per-signals-url-bid-generator③"></a></h3>
-   <p>A per signals url bid generator is an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①④">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑧">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①②">origins</a> representing <a data-link-type="dfn" href="#interest-group-joining-origin" id="ref-for-interest-group-joining-origin②">joining origins</a>, and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑧">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⓪">lists</a> of <a data-link-type="dfn" href="#interest-group" id="ref-for-interest-group③">interest groups</a>.</p>
+   <p>A per signals url bid generator is an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①⑤">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys①⑨">keys</a> are <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin⑦">origins</a> representing <a data-link-type="dfn" href="#interest-group-joining-origin" id="ref-for-interest-group-joining-origin②">joining origins</a>, and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values①⑨">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⓪">lists</a> of <a data-link-type="dfn" href="#interest-group" id="ref-for-interest-group③">interest groups</a>.</p>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.6" data-lt="Generated bid" data-noexport id="generated-bid"><span class="secno">7.6. </span><span class="content">Generated bid</span><a class="self-link" href="#generated-bid" id="ref-for-generated-bid⑤"></a></h3>
    <p>The output of running a FLEDGE generateBid() script, which needs to be scored by the seller.</p>
    <dl>
@@ -2209,7 +2298,7 @@ trusted servers for buyers without a specified experiment group.</p>
 the auction.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="generated bid" data-dfn-type="dfn" data-noexport id="generated-bid-ad">ad</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②③">string</a>. JSON string to be passed to the scoring function.</p>
+     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②④">string</a>. JSON string to be passed to the scoring function.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="generated bid" data-dfn-type="dfn" data-noexport id="generated-bid-ad-descriptor">ad descriptor</dfn>
     <dd data-md>
      <p>An <a data-link-type="dfn" href="#ad-descriptor" id="ref-for-ad-descriptor④">ad descriptor</a>.</p>
@@ -2218,11 +2307,14 @@ the auction.</p>
      <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①①">list</a> of <a data-link-type="dfn" href="#ad-descriptor" id="ref-for-ad-descriptor⑤">ad descriptors</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="generated bid" data-dfn-type="dfn" data-noexport id="generated-bid-ad-cost">ad cost</dfn>
     <dd data-md>
-     <p>Null or a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑦">double</a></code>. Advertiser click or conversion cost passed from generateBid() to
+     <p>Null or a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑦">double</a></code>. Advertiser click or conversion cost passed from <code>generateBid()</code> to
 reportWin().</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="generated bid" data-dfn-type="dfn" data-noexport id="generated-bid-modeling-signals">modeling signals</dfn>
     <dd data-md>
      <p>Null or a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-unsigned-short" id="ref-for-idl-unsigned-short⑨">unsigned short</a></code>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-for="generated bid" data-dfn-type="dfn" data-noexport id="generated-bid-interest-group">interest group</dfn>
+    <dd data-md>
+     <p>An <a data-link-type="dfn" href="#interest-group" id="ref-for-interest-group④">interest group</a>, whose <code>generateBid()</code> invocation generated this bid.</p>
    </dl>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.7" data-lt="Ad descriptor" data-noexport id="ad-descriptor"><span class="secno">7.7. </span><span class="content">Ad descriptor</span><a class="self-link" href="#ad-descriptor" id="ref-for-ad-descriptor⑥"></a></h3>
    <p>The render URL and size of an ad.</p>
@@ -2242,13 +2334,13 @@ reportWin().</p>
      <p>A <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑧">double</a></code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="ad size" data-dfn-type="dfn" data-noexport id="ad-size-width-units">width units</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②④">string</a>. Can only be one of "px" (pixel) and "sw" (screen width).</p>
+     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②⑤">string</a>. Can only be one of "px" (pixel) and "sw" (screen width).</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="ad size" data-dfn-type="dfn" data-noexport id="ad-size-height">height</dfn>
     <dd data-md>
      <p>A <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double①⑨">double</a></code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="ad size" data-dfn-type="dfn" data-noexport id="ad-size-height-units">height units</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②⑤">string</a>. Can only be one of "px" (pixel) and "sw" (screen width).</p>
+     <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②⑥">string</a>. Can only be one of "px" (pixel) and "sw" (screen width).</p>
    </dl>
    <h3 class="heading settled dfn-paneled" data-dfn-type="dfn" data-level="7.9" data-lt="Score ad output" data-noexport id="score-ad-output"><span class="secno">7.9. </span><span class="content">Score ad output</span><a class="self-link" href="#score-ad-output" id="ref-for-score-ad-output"></a></h3>
    <p>The output of running a FLEDGE scoreAd() script.</p>
@@ -2328,6 +2420,7 @@ wins the component auction and top-level auction, respectively.</p>
    <li><a href="#dictdef-auctionad">AuctionAd</a><span>, in § 2</span>
    <li><a href="#dictdef-auctionadconfig">AuctionAdConfig</a><span>, in § 4.2</span>
    <li><a href="#dictdef-auctionadinterestgroup">AuctionAdInterestGroup</a><span>, in § 2</span>
+   <li><a href="#dictdef-auctionadinterestgroupkey">AuctionAdInterestGroupKey</a><span>, in § 3</span>
    <li><a href="#auction-config">Auction config</a><span>, in § 7.2</span>
    <li><a href="#auction-config-auction-signals">auction signals</a><span>, in § 7.3</span>
    <li><a href="#dom-auctionadconfig-auctionsignals">auctionSignals</a><span>, in § 4.2</span>
@@ -2376,6 +2469,7 @@ wins the component auction and top-level auction, respectively.</p>
     </ul>
    <li><a href="#ad-size-height-units">height units</a><span>, in § 7.8</span>
    <li><a href="#interest-group">Interest group</a><span>, in § 7</span>
+   <li><a href="#generated-bid-interest-group">interest group</a><span>, in § 7.6</span>
    <li><a href="#interest-group-ad">Interest group ad</a><span>, in § 7.1</span>
    <li><a href="#interestgroupbiddingscriptrunnerglobalscope">InterestGroupBiddingScriptRunnerGlobalScope</a><span>, in § 4.1</span>
    <li><a href="#auction-config-interest-group-buyers">interest group buyers</a><span>, in § 7.3</span>
@@ -2389,6 +2483,7 @@ wins the component auction and top-level auction, respectively.</p>
    <li><a href="#interest-group-joining-origin">joining origin</a><span>, in § 7.1</span>
    <li><a href="#leading-bid-info-leading-bid">leading bid</a><span>, in § 7.10</span>
    <li><a href="#leading-bid-info">Leading bid info</a><span>, in § 7.9</span>
+   <li><a href="#dom-navigator-leaveadinterestgroup">leaveAdInterestGroup(group)</a><span>, in § 3</span>
    <li>
     metadata
     <ul>
@@ -2402,12 +2497,14 @@ wins the component auction and top-level auction, respectively.</p>
     <ul>
      <li><a href="#interest-group-name">dfn for interest group</a><span>, in § 7.1</span>
      <li><a href="#dom-auctionadinterestgroup-name">dict-member for AuctionAdInterestGroup</a><span>, in § 2</span>
+     <li><a href="#dom-auctionadinterestgroupkey-name">dict-member for AuctionAdInterestGroupKey</a><span>, in § 3</span>
     </ul>
    <li>
     owner
     <ul>
      <li><a href="#interest-group-owner">dfn for interest group</a><span>, in § 7.1</span>
      <li><a href="#dom-auctionadinterestgroup-owner">dict-member for AuctionAdInterestGroup</a><span>, in § 2</span>
+     <li><a href="#dom-auctionadinterestgroupkey-owner">dict-member for AuctionAdInterestGroupKey</a><span>, in § 3</span>
     </ul>
    <li><a href="#parse-an-origin">parse an origin</a><span>, in § 4.2</span>
    <li><a href="#per-buyer-bid-generator">Per buyer bid generator</a><span>, in § 7.3</span>
@@ -2485,6 +2582,12 @@ wins the component auction and top-level auction, respectively.</p>
     </ul>
    <li><a href="#ad-size-width-units">width units</a><span>, in § 7.8</span>
   </ul>
+  <aside aria-labelledby="infopaneltitle-for-bc0be31e8402fbeecaef46d793534cb1" class="dfn-panel" data-for="bc0be31e8402fbeecaef46d793534cb1" id="infopanel-for-bc0be31e8402fbeecaef46d793534cb1">
+   <span id="infopaneltitle-for-bc0be31e8402fbeecaef46d793534cb1" style="display:none">Info about the 'urn uuid' external reference.</span><a href="https://www.ietf.org/rfc/rfc4122.txt#urn-uuid">https://www.ietf.org/rfc/rfc4122.txt#urn-uuid</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-urn-uuid">7.2. Interest group ad</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-0cadfc0f183a5a4a73af55604ddb1ed1" class="dfn-panel" data-for="0cadfc0f183a5a4a73af55604ddb1ed1" id="infopanel-for-0cadfc0f183a5a4a73af55604ddb1ed1">
    <span id="infopaneltitle-for-0cadfc0f183a5a4a73af55604ddb1ed1" style="display:none">Info about the 'AbortSignal' external reference.</span><a href="https://dom.spec.whatwg.org/#abortsignal">https://dom.spec.whatwg.org/#abortsignal</a><b>Referenced in:</b>
    <ul>
@@ -2639,7 +2742,8 @@ wins the component auction and top-level auction, respectively.</p>
    <span id="infopaneltitle-for-3c82b19be23a00eb4bb6896ec20cd7aa" style="display:none">Info about the 'Navigator' external reference.</span><a href="https://html.spec.whatwg.org/multipage/system-state.html#navigator">https://html.spec.whatwg.org/multipage/system-state.html#navigator</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-navigator">2. Joining Interest Groups</a>
-    <li><a href="#ref-for-navigator①">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-navigator①">3. Leaving Interest Groups</a>
+    <li><a href="#ref-for-navigator②">4.2. runAdAuction()</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-3dc9eee4a6a1d169f561b6d87bd08573" class="dfn-panel" data-for="3dc9eee4a6a1d169f561b6d87bd08573" id="infopanel-for-3dc9eee4a6a1d169f561b6d87bd08573">
@@ -2686,13 +2790,21 @@ wins the component auction and top-level auction, respectively.</p>
    <ul>
     <li><a href="#ref-for-dom-navigator">1. Introduction</a> <a href="#ref-for-dom-navigator①">(2)</a>
     <li><a href="#ref-for-dom-navigator②">2. Joining Interest Groups</a>
-    <li><a href="#ref-for-dom-navigator③">4. Running Ad Auctions</a>
+    <li><a href="#ref-for-dom-navigator③">3. Leaving Interest Groups</a>
+    <li><a href="#ref-for-dom-navigator④">4. Running Ad Auctions</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-23307d34220e7159f8e5d8c231db141f" class="dfn-panel" data-for="23307d34220e7159f8e5d8c231db141f" id="infopanel-for-23307d34220e7159f8e5d8c231db141f">
    <span id="infopaneltitle-for-23307d34220e7159f8e5d8c231db141f" style="display:none">Info about the 'opaque origin' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-origin-opaque">4.2. runAdAuction()</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-e66f9f7d45934e77669cb907bd0c7636" class="dfn-panel" data-for="e66f9f7d45934e77669cb907bd0c7636" id="infopanel-for-e66f9f7d45934e77669cb907bd0c7636">
+   <span id="infopaneltitle-for-e66f9f7d45934e77669cb907bd0c7636" style="display:none">Info about the 'origin' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-origin">7.1. Interest group</a> <a href="#ref-for-concept-origin①">(2)</a> <a href="#ref-for-concept-origin②">(3)</a> <a href="#ref-for-concept-origin③">(4)</a> <a href="#ref-for-concept-origin④">(5)</a>
+    <li><a href="#ref-for-concept-origin⑤">7.3. Auction config</a> <a href="#ref-for-concept-origin⑥">(2)</a> <a href="#ref-for-concept-origin⑦">(3)</a> <a href="#ref-for-concept-origin⑧">(4)</a> <a href="#ref-for-concept-origin⑨">(5)</a> <a href="#ref-for-concept-origin①⓪">(6)</a> <a href="#ref-for-concept-origin①①">(7)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-a8756513b792b8f203588906035a13bb" class="dfn-panel" data-for="a8756513b792b8f203588906035a13bb" id="infopanel-for-a8756513b792b8f203588906035a13bb">
@@ -2726,6 +2838,15 @@ wins the component auction and top-level auction, respectively.</p>
    <ul>
     <li><a href="#ref-for-same-origin">2. Joining Interest Groups</a>
     <li><a href="#ref-for-same-origin①">4.2. runAdAuction()</a> <a href="#ref-for-same-origin②">(2)</a> <a href="#ref-for-same-origin③">(3)</a>
+    <li><a href="#ref-for-same-origin④">7.1. Interest group</a> <a href="#ref-for-same-origin⑤">(2)</a> <a href="#ref-for-same-origin⑥">(3)</a> <a href="#ref-for-same-origin⑦">(4)</a>
+    <li><a href="#ref-for-same-origin⑧">7.3. Auction config</a> <a href="#ref-for-same-origin⑨">(2)</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-e462c9f2460203de987a597cf2944ef9" class="dfn-panel" data-for="e462c9f2460203de987a597cf2944ef9" id="infopanel-for-e462c9f2460203de987a597cf2944ef9">
+   <span id="infopaneltitle-for-e462c9f2460203de987a597cf2944ef9" style="display:none">Info about the 'scheme' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme">https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-concept-origin-scheme">7.1. Interest group</a>
+    <li><a href="#ref-for-concept-origin-scheme①">7.3. Auction config</a> <a href="#ref-for-concept-origin-scheme②">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-2aeb953708ac6466a37697c533cf366f" class="dfn-panel" data-for="2aeb953708ac6466a37697c533cf366f" id="infopanel-for-2aeb953708ac6466a37697c533cf366f">
@@ -2793,7 +2914,7 @@ wins the component auction and top-level auction, respectively.</p>
    <ul>
     <li><a href="#ref-for-map-exists">2. Joining Interest Groups</a> <a href="#ref-for-map-exists①">(2)</a> <a href="#ref-for-map-exists②">(3)</a> <a href="#ref-for-map-exists③">(4)</a> <a href="#ref-for-map-exists④">(5)</a> <a href="#ref-for-map-exists⑤">(6)</a>
     <li><a href="#ref-for-map-exists⑥">4.1. Script Runners</a> <a href="#ref-for-map-exists⑦">(2)</a> <a href="#ref-for-map-exists⑧">(3)</a> <a href="#ref-for-map-exists⑨">(4)</a> <a href="#ref-for-map-exists①⓪">(5)</a> <a href="#ref-for-map-exists①①">(6)</a> <a href="#ref-for-map-exists①②">(7)</a>
-    <li><a href="#ref-for-map-exists①③">4.2. runAdAuction()</a> <a href="#ref-for-map-exists①④">(2)</a> <a href="#ref-for-map-exists①⑤">(3)</a> <a href="#ref-for-map-exists①⑥">(4)</a> <a href="#ref-for-map-exists①⑦">(5)</a> <a href="#ref-for-map-exists①⑧">(6)</a> <a href="#ref-for-map-exists①⑨">(7)</a> <a href="#ref-for-map-exists②⓪">(8)</a> <a href="#ref-for-map-exists②①">(9)</a> <a href="#ref-for-map-exists②②">(10)</a> <a href="#ref-for-map-exists②③">(11)</a> <a href="#ref-for-map-exists②④">(12)</a> <a href="#ref-for-map-exists②⑤">(13)</a> <a href="#ref-for-map-exists②⑥">(14)</a> <a href="#ref-for-map-exists②⑦">(15)</a> <a href="#ref-for-map-exists②⑧">(16)</a> <a href="#ref-for-map-exists②⑨">(17)</a> <a href="#ref-for-map-exists③⓪">(18)</a> <a href="#ref-for-map-exists③①">(19)</a>
+    <li><a href="#ref-for-map-exists①③">4.2. runAdAuction()</a> <a href="#ref-for-map-exists①④">(2)</a> <a href="#ref-for-map-exists①⑤">(3)</a> <a href="#ref-for-map-exists①⑥">(4)</a> <a href="#ref-for-map-exists①⑦">(5)</a> <a href="#ref-for-map-exists①⑧">(6)</a> <a href="#ref-for-map-exists①⑨">(7)</a> <a href="#ref-for-map-exists②⓪">(8)</a> <a href="#ref-for-map-exists②①">(9)</a> <a href="#ref-for-map-exists②②">(10)</a> <a href="#ref-for-map-exists②③">(11)</a> <a href="#ref-for-map-exists②④">(12)</a> <a href="#ref-for-map-exists②⑤">(13)</a> <a href="#ref-for-map-exists②⑥">(14)</a> <a href="#ref-for-map-exists②⑦">(15)</a> <a href="#ref-for-map-exists②⑧">(16)</a> <a href="#ref-for-map-exists②⑨">(17)</a> <a href="#ref-for-map-exists③⓪">(18)</a> <a href="#ref-for-map-exists③①">(19)</a> <a href="#ref-for-map-exists③②">(20)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-ce9efec0e74a2cbfe986593eb861ade6" class="dfn-panel" data-for="ce9efec0e74a2cbfe986593eb861ade6" id="infopanel-for-ce9efec0e74a2cbfe986593eb861ade6">
@@ -2807,7 +2928,7 @@ wins the component auction and top-level auction, respectively.</p>
    <ul>
     <li><a href="#ref-for-map-exists">2. Joining Interest Groups</a> <a href="#ref-for-map-exists①">(2)</a> <a href="#ref-for-map-exists②">(3)</a> <a href="#ref-for-map-exists③">(4)</a> <a href="#ref-for-map-exists④">(5)</a> <a href="#ref-for-map-exists⑤">(6)</a>
     <li><a href="#ref-for-map-exists⑥">4.1. Script Runners</a> <a href="#ref-for-map-exists⑦">(2)</a> <a href="#ref-for-map-exists⑧">(3)</a> <a href="#ref-for-map-exists⑨">(4)</a> <a href="#ref-for-map-exists①⓪">(5)</a> <a href="#ref-for-map-exists①①">(6)</a> <a href="#ref-for-map-exists①②">(7)</a>
-    <li><a href="#ref-for-map-exists①③">4.2. runAdAuction()</a> <a href="#ref-for-map-exists①④">(2)</a> <a href="#ref-for-map-exists①⑤">(3)</a> <a href="#ref-for-map-exists①⑥">(4)</a> <a href="#ref-for-map-exists①⑦">(5)</a> <a href="#ref-for-map-exists①⑧">(6)</a> <a href="#ref-for-map-exists①⑨">(7)</a> <a href="#ref-for-map-exists②⓪">(8)</a> <a href="#ref-for-map-exists②①">(9)</a> <a href="#ref-for-map-exists②②">(10)</a> <a href="#ref-for-map-exists②③">(11)</a> <a href="#ref-for-map-exists②④">(12)</a> <a href="#ref-for-map-exists②⑤">(13)</a> <a href="#ref-for-map-exists②⑥">(14)</a> <a href="#ref-for-map-exists②⑦">(15)</a> <a href="#ref-for-map-exists②⑧">(16)</a> <a href="#ref-for-map-exists②⑨">(17)</a> <a href="#ref-for-map-exists③⓪">(18)</a> <a href="#ref-for-map-exists③①">(19)</a>
+    <li><a href="#ref-for-map-exists①③">4.2. runAdAuction()</a> <a href="#ref-for-map-exists①④">(2)</a> <a href="#ref-for-map-exists①⑤">(3)</a> <a href="#ref-for-map-exists①⑥">(4)</a> <a href="#ref-for-map-exists①⑦">(5)</a> <a href="#ref-for-map-exists①⑧">(6)</a> <a href="#ref-for-map-exists①⑨">(7)</a> <a href="#ref-for-map-exists②⓪">(8)</a> <a href="#ref-for-map-exists②①">(9)</a> <a href="#ref-for-map-exists②②">(10)</a> <a href="#ref-for-map-exists②③">(11)</a> <a href="#ref-for-map-exists②④">(12)</a> <a href="#ref-for-map-exists②⑤">(13)</a> <a href="#ref-for-map-exists②⑥">(14)</a> <a href="#ref-for-map-exists②⑦">(15)</a> <a href="#ref-for-map-exists②⑧">(16)</a> <a href="#ref-for-map-exists②⑨">(17)</a> <a href="#ref-for-map-exists③⓪">(18)</a> <a href="#ref-for-map-exists③①">(19)</a> <a href="#ref-for-map-exists③②">(20)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-8b9e78ceedde26e69095bd6f6cce47bf" class="dfn-panel" data-for="8b9e78ceedde26e69095bd6f6cce47bf" id="infopanel-for-8b9e78ceedde26e69095bd6f6cce47bf">
@@ -2833,11 +2954,11 @@ wins the component auction and top-level auction, respectively.</p>
   <aside aria-labelledby="infopaneltitle-for-d970c9402d2ebe6e16b496ab9414f037" class="dfn-panel" data-for="d970c9402d2ebe6e16b496ab9414f037" id="infopanel-for-d970c9402d2ebe6e16b496ab9414f037">
    <span id="infopaneltitle-for-d970c9402d2ebe6e16b496ab9414f037" style="display:none">Info about the 'keys' external reference.</span><a href="https://infra.spec.whatwg.org/#map-getting-the-keys">https://infra.spec.whatwg.org/#map-getting-the-keys</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-getting-the-keys">4.2. runAdAuction()</a> <a href="#ref-for-map-getting-the-keys①">(2)</a> <a href="#ref-for-map-getting-the-keys②">(3)</a> <a href="#ref-for-map-getting-the-keys③">(4)</a>
-    <li><a href="#ref-for-map-getting-the-keys④">7.1. Interest group</a> <a href="#ref-for-map-getting-the-keys⑤">(2)</a>
-    <li><a href="#ref-for-map-getting-the-keys⑥">7.3. Auction config</a> <a href="#ref-for-map-getting-the-keys⑦">(2)</a> <a href="#ref-for-map-getting-the-keys⑧">(3)</a> <a href="#ref-for-map-getting-the-keys⑨">(4)</a> <a href="#ref-for-map-getting-the-keys①⓪">(5)</a> <a href="#ref-for-map-getting-the-keys①①">(6)</a> <a href="#ref-for-map-getting-the-keys①②">(7)</a> <a href="#ref-for-map-getting-the-keys①③">(8)</a> <a href="#ref-for-map-getting-the-keys①④">(9)</a> <a href="#ref-for-map-getting-the-keys①⑤">(10)</a> <a href="#ref-for-map-getting-the-keys①⑥">(11)</a>
-    <li><a href="#ref-for-map-getting-the-keys①⑦">7.4. Per buyer bid generator</a>
-    <li><a href="#ref-for-map-getting-the-keys①⑧">7.5. Per signals url bid generator</a>
+    <li><a href="#ref-for-map-getting-the-keys">4.2. runAdAuction()</a> <a href="#ref-for-map-getting-the-keys①">(2)</a> <a href="#ref-for-map-getting-the-keys②">(3)</a> <a href="#ref-for-map-getting-the-keys③">(4)</a> <a href="#ref-for-map-getting-the-keys④">(5)</a>
+    <li><a href="#ref-for-map-getting-the-keys⑤">7.1. Interest group</a> <a href="#ref-for-map-getting-the-keys⑥">(2)</a>
+    <li><a href="#ref-for-map-getting-the-keys⑦">7.3. Auction config</a> <a href="#ref-for-map-getting-the-keys⑧">(2)</a> <a href="#ref-for-map-getting-the-keys⑨">(3)</a> <a href="#ref-for-map-getting-the-keys①⓪">(4)</a> <a href="#ref-for-map-getting-the-keys①①">(5)</a> <a href="#ref-for-map-getting-the-keys①②">(6)</a> <a href="#ref-for-map-getting-the-keys①③">(7)</a> <a href="#ref-for-map-getting-the-keys①④">(8)</a> <a href="#ref-for-map-getting-the-keys①⑤">(9)</a> <a href="#ref-for-map-getting-the-keys①⑥">(10)</a> <a href="#ref-for-map-getting-the-keys①⑦">(11)</a>
+    <li><a href="#ref-for-map-getting-the-keys①⑧">7.4. Per buyer bid generator</a>
+    <li><a href="#ref-for-map-getting-the-keys①⑨">7.5. Per signals url bid generator</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-81b03c84949641fc3081227509aab38f" class="dfn-panel" data-for="81b03c84949641fc3081227509aab38f" id="infopanel-for-81b03c84949641fc3081227509aab38f">
@@ -2861,17 +2982,23 @@ wins the component auction and top-level auction, respectively.</p>
   <aside aria-labelledby="infopaneltitle-for-6f2e2caca6e93162e900d159efe5b573" class="dfn-panel" data-for="6f2e2caca6e93162e900d159efe5b573" id="infopanel-for-6f2e2caca6e93162e900d159efe5b573">
    <span id="infopaneltitle-for-6f2e2caca6e93162e900d159efe5b573" style="display:none">Info about the 'ordered map' external reference.</span><a href="https://infra.spec.whatwg.org/#ordered-map">https://infra.spec.whatwg.org/#ordered-map</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-ordered-map">4.2. runAdAuction()</a> <a href="#ref-for-ordered-map①">(2)</a> <a href="#ref-for-ordered-map②">(3)</a> <a href="#ref-for-ordered-map③">(4)</a>
-    <li><a href="#ref-for-ordered-map④">7.1. Interest group</a> <a href="#ref-for-ordered-map⑤">(2)</a>
-    <li><a href="#ref-for-ordered-map⑥">7.3. Auction config</a> <a href="#ref-for-ordered-map⑦">(2)</a> <a href="#ref-for-ordered-map⑧">(3)</a> <a href="#ref-for-ordered-map⑨">(4)</a> <a href="#ref-for-ordered-map①⓪">(5)</a> <a href="#ref-for-ordered-map①①">(6)</a> <a href="#ref-for-ordered-map①②">(7)</a>
-    <li><a href="#ref-for-ordered-map①③">7.4. Per buyer bid generator</a>
-    <li><a href="#ref-for-ordered-map①④">7.5. Per signals url bid generator</a>
+    <li><a href="#ref-for-ordered-map">4.2. runAdAuction()</a> <a href="#ref-for-ordered-map①">(2)</a> <a href="#ref-for-ordered-map②">(3)</a> <a href="#ref-for-ordered-map③">(4)</a> <a href="#ref-for-ordered-map④">(5)</a>
+    <li><a href="#ref-for-ordered-map⑤">7.1. Interest group</a> <a href="#ref-for-ordered-map⑥">(2)</a>
+    <li><a href="#ref-for-ordered-map⑦">7.3. Auction config</a> <a href="#ref-for-ordered-map⑧">(2)</a> <a href="#ref-for-ordered-map⑨">(3)</a> <a href="#ref-for-ordered-map①⓪">(4)</a> <a href="#ref-for-ordered-map①①">(5)</a> <a href="#ref-for-ordered-map①②">(6)</a> <a href="#ref-for-ordered-map①③">(7)</a>
+    <li><a href="#ref-for-ordered-map①④">7.4. Per buyer bid generator</a>
+    <li><a href="#ref-for-ordered-map①⑤">7.5. Per signals url bid generator</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-80524ea4c0063fe3cf0b6c49a40e31bf" class="dfn-panel" data-for="80524ea4c0063fe3cf0b6c49a40e31bf" id="infopanel-for-80524ea4c0063fe3cf0b6c49a40e31bf">
    <span id="infopaneltitle-for-80524ea4c0063fe3cf0b6c49a40e31bf" style="display:none">Info about the 'ordered set' external reference.</span><a href="https://infra.spec.whatwg.org/#ordered-set">https://infra.spec.whatwg.org/#ordered-set</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ordered-set">4.2. runAdAuction()</a> <a href="#ref-for-ordered-set①">(2)</a> <a href="#ref-for-ordered-set②">(3)</a> <a href="#ref-for-ordered-set③">(4)</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-5191a0c00b6ec5f93646e492ae7ec62c" class="dfn-panel" data-for="5191a0c00b6ec5f93646e492ae7ec62c" id="infopanel-for-5191a0c00b6ec5f93646e492ae7ec62c">
+   <span id="infopaneltitle-for-5191a0c00b6ec5f93646e492ae7ec62c" style="display:none">Info about the 'remove' external reference.</span><a href="https://infra.spec.whatwg.org/#map-remove">https://infra.spec.whatwg.org/#map-remove</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-map-remove">4.2. runAdAuction()</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-c186cdbfe7e0e7f10f543af94aebdac4" class="dfn-panel" data-for="c186cdbfe7e0e7f10f543af94aebdac4" id="infopanel-for-c186cdbfe7e0e7f10f543af94aebdac4">
@@ -2885,7 +3012,7 @@ wins the component auction and top-level auction, respectively.</p>
   <aside aria-labelledby="infopaneltitle-for-5c3d3462610d78bc92b91000cc511bc4" class="dfn-panel" data-for="5c3d3462610d78bc92b91000cc511bc4" id="infopanel-for-5c3d3462610d78bc92b91000cc511bc4">
    <span id="infopaneltitle-for-5c3d3462610d78bc92b91000cc511bc4" style="display:none">Info about the 'set' external reference.</span><a href="https://infra.spec.whatwg.org/#map-set">https://infra.spec.whatwg.org/#map-set</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-set">4.2. runAdAuction()</a> <a href="#ref-for-map-set①">(2)</a> <a href="#ref-for-map-set②">(3)</a> <a href="#ref-for-map-set③">(4)</a> <a href="#ref-for-map-set④">(5)</a> <a href="#ref-for-map-set⑤">(6)</a> <a href="#ref-for-map-set⑥">(7)</a> <a href="#ref-for-map-set⑦">(8)</a> <a href="#ref-for-map-set⑧">(9)</a> <a href="#ref-for-map-set⑨">(10)</a> <a href="#ref-for-map-set①⓪">(11)</a> <a href="#ref-for-map-set①①">(12)</a> <a href="#ref-for-map-set①②">(13)</a> <a href="#ref-for-map-set①③">(14)</a>
+    <li><a href="#ref-for-map-set">4.2. runAdAuction()</a> <a href="#ref-for-map-set①">(2)</a> <a href="#ref-for-map-set②">(3)</a> <a href="#ref-for-map-set③">(4)</a> <a href="#ref-for-map-set④">(5)</a> <a href="#ref-for-map-set⑤">(6)</a> <a href="#ref-for-map-set⑥">(7)</a> <a href="#ref-for-map-set⑦">(8)</a> <a href="#ref-for-map-set⑧">(9)</a> <a href="#ref-for-map-set⑨">(10)</a> <a href="#ref-for-map-set①⓪">(11)</a> <a href="#ref-for-map-set①①">(12)</a> <a href="#ref-for-map-set①②">(13)</a> <a href="#ref-for-map-set①③">(14)</a> <a href="#ref-for-map-set①④">(15)</a> <a href="#ref-for-map-set①⑤">(16)</a> <a href="#ref-for-map-set①⑥">(17)</a> <a href="#ref-for-map-set①⑦">(18)</a> <a href="#ref-for-map-set①⑧">(19)</a> <a href="#ref-for-map-set①⑨">(20)</a> <a href="#ref-for-map-set②⓪">(21)</a> <a href="#ref-for-map-set②①">(22)</a> <a href="#ref-for-map-set②②">(23)</a> <a href="#ref-for-map-set②③">(24)</a> <a href="#ref-for-map-set②④">(25)</a> <a href="#ref-for-map-set②⑤">(26)</a> <a href="#ref-for-map-set②⑥">(27)</a> <a href="#ref-for-map-set②⑦">(28)</a> <a href="#ref-for-map-set②⑧">(29)</a> <a href="#ref-for-map-set②⑨">(30)</a> <a href="#ref-for-map-set③⓪">(31)</a> <a href="#ref-for-map-set③①">(32)</a> <a href="#ref-for-map-set③②">(33)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-bed8381510f5967f5d37a33de776e857" class="dfn-panel" data-for="bed8381510f5967f5d37a33de776e857" id="infopanel-for-bed8381510f5967f5d37a33de776e857">
@@ -2909,12 +3036,12 @@ wins the component auction and top-level auction, respectively.</p>
   <aside aria-labelledby="infopaneltitle-for-40b59bc325bd4d66701dfd8b7f1847c0" class="dfn-panel" data-for="40b59bc325bd4d66701dfd8b7f1847c0" id="infopanel-for-40b59bc325bd4d66701dfd8b7f1847c0">
    <span id="infopaneltitle-for-40b59bc325bd4d66701dfd8b7f1847c0" style="display:none">Info about the 'string' external reference.</span><a href="https://infra.spec.whatwg.org/#string">https://infra.spec.whatwg.org/#string</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-string">4.2. runAdAuction()</a> <a href="#ref-for-string①">(2)</a> <a href="#ref-for-string②">(3)</a> <a href="#ref-for-string③">(4)</a> <a href="#ref-for-string④">(5)</a> <a href="#ref-for-string⑤">(6)</a> <a href="#ref-for-string⑥">(7)</a> <a href="#ref-for-string⑦">(8)</a> <a href="#ref-for-string⑧">(9)</a> <a href="#ref-for-string⑨">(10)</a> <a href="#ref-for-string①⓪">(11)</a>
-    <li><a href="#ref-for-string①①">7.1. Interest group</a> <a href="#ref-for-string①②">(2)</a> <a href="#ref-for-string①③">(3)</a> <a href="#ref-for-string①④">(4)</a> <a href="#ref-for-string①⑤">(5)</a> <a href="#ref-for-string①⑥">(6)</a>
-    <li><a href="#ref-for-string①⑦">7.2. Interest group ad</a>
-    <li><a href="#ref-for-string①⑧">7.3. Auction config</a> <a href="#ref-for-string①⑨">(2)</a> <a href="#ref-for-string②⓪">(3)</a> <a href="#ref-for-string②①">(4)</a> <a href="#ref-for-string②②">(5)</a>
-    <li><a href="#ref-for-string②③">7.6. Generated bid</a>
-    <li><a href="#ref-for-string②④">7.8. Ad size</a> <a href="#ref-for-string②⑤">(2)</a>
+    <li><a href="#ref-for-string">4.2. runAdAuction()</a> <a href="#ref-for-string①">(2)</a> <a href="#ref-for-string②">(3)</a> <a href="#ref-for-string③">(4)</a> <a href="#ref-for-string④">(5)</a> <a href="#ref-for-string⑤">(6)</a> <a href="#ref-for-string⑥">(7)</a> <a href="#ref-for-string⑦">(8)</a> <a href="#ref-for-string⑧">(9)</a> <a href="#ref-for-string⑨">(10)</a> <a href="#ref-for-string①⓪">(11)</a> <a href="#ref-for-string①①">(12)</a>
+    <li><a href="#ref-for-string①②">7.1. Interest group</a> <a href="#ref-for-string①③">(2)</a> <a href="#ref-for-string①④">(3)</a> <a href="#ref-for-string①⑤">(4)</a> <a href="#ref-for-string①⑥">(5)</a> <a href="#ref-for-string①⑦">(6)</a>
+    <li><a href="#ref-for-string①⑧">7.2. Interest group ad</a>
+    <li><a href="#ref-for-string①⑨">7.3. Auction config</a> <a href="#ref-for-string②⓪">(2)</a> <a href="#ref-for-string②①">(3)</a> <a href="#ref-for-string②②">(4)</a> <a href="#ref-for-string②③">(5)</a>
+    <li><a href="#ref-for-string②④">7.6. Generated bid</a>
+    <li><a href="#ref-for-string②⑤">7.8. Ad size</a> <a href="#ref-for-string②⑥">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-3ee316b93eb2dbe81d01a666cce50f9b" class="dfn-panel" data-for="3ee316b93eb2dbe81d01a666cce50f9b" id="infopanel-for-3ee316b93eb2dbe81d01a666cce50f9b">
@@ -2928,11 +3055,11 @@ wins the component auction and top-level auction, respectively.</p>
   <aside aria-labelledby="infopaneltitle-for-f3303f924992de4a9bec051b5191187a" class="dfn-panel" data-for="f3303f924992de4a9bec051b5191187a" id="infopanel-for-f3303f924992de4a9bec051b5191187a">
    <span id="infopaneltitle-for-f3303f924992de4a9bec051b5191187a" style="display:none">Info about the 'values' external reference.</span><a href="https://infra.spec.whatwg.org/#map-getting-the-values">https://infra.spec.whatwg.org/#map-getting-the-values</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-map-getting-the-values">4.2. runAdAuction()</a> <a href="#ref-for-map-getting-the-values①">(2)</a> <a href="#ref-for-map-getting-the-values②">(3)</a> <a href="#ref-for-map-getting-the-values③">(4)</a>
-    <li><a href="#ref-for-map-getting-the-values④">7.1. Interest group</a> <a href="#ref-for-map-getting-the-values⑤">(2)</a>
-    <li><a href="#ref-for-map-getting-the-values⑥">7.3. Auction config</a> <a href="#ref-for-map-getting-the-values⑦">(2)</a> <a href="#ref-for-map-getting-the-values⑧">(3)</a> <a href="#ref-for-map-getting-the-values⑨">(4)</a> <a href="#ref-for-map-getting-the-values①⓪">(5)</a> <a href="#ref-for-map-getting-the-values①①">(6)</a> <a href="#ref-for-map-getting-the-values①②">(7)</a> <a href="#ref-for-map-getting-the-values①③">(8)</a> <a href="#ref-for-map-getting-the-values①④">(9)</a> <a href="#ref-for-map-getting-the-values①⑤">(10)</a> <a href="#ref-for-map-getting-the-values①⑥">(11)</a>
-    <li><a href="#ref-for-map-getting-the-values①⑦">7.4. Per buyer bid generator</a>
-    <li><a href="#ref-for-map-getting-the-values①⑧">7.5. Per signals url bid generator</a>
+    <li><a href="#ref-for-map-getting-the-values">4.2. runAdAuction()</a> <a href="#ref-for-map-getting-the-values①">(2)</a> <a href="#ref-for-map-getting-the-values②">(3)</a> <a href="#ref-for-map-getting-the-values③">(4)</a> <a href="#ref-for-map-getting-the-values④">(5)</a>
+    <li><a href="#ref-for-map-getting-the-values⑤">7.1. Interest group</a> <a href="#ref-for-map-getting-the-values⑥">(2)</a>
+    <li><a href="#ref-for-map-getting-the-values⑦">7.3. Auction config</a> <a href="#ref-for-map-getting-the-values⑧">(2)</a> <a href="#ref-for-map-getting-the-values⑨">(3)</a> <a href="#ref-for-map-getting-the-values①⓪">(4)</a> <a href="#ref-for-map-getting-the-values①①">(5)</a> <a href="#ref-for-map-getting-the-values①②">(6)</a> <a href="#ref-for-map-getting-the-values①③">(7)</a> <a href="#ref-for-map-getting-the-values①④">(8)</a> <a href="#ref-for-map-getting-the-values①⑤">(9)</a> <a href="#ref-for-map-getting-the-values①⑥">(10)</a> <a href="#ref-for-map-getting-the-values①⑦">(11)</a>
+    <li><a href="#ref-for-map-getting-the-values①⑧">7.4. Per buyer bid generator</a>
+    <li><a href="#ref-for-map-getting-the-values①⑨">7.5. Per signals url bid generator</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-5f9330a8f7c5b66d2adf3d3370ae74c1" class="dfn-panel" data-for="5f9330a8f7c5b66d2adf3d3370ae74c1" id="infopanel-for-5f9330a8f7c5b66d2adf3d3370ae74c1">
@@ -2990,9 +3117,9 @@ wins the component auction and top-level auction, respectively.</p>
    <ul>
     <li><a href="#ref-for-concept-url-origin">2. Joining Interest Groups</a>
     <li><a href="#ref-for-concept-url-origin①">4.2. runAdAuction()</a> <a href="#ref-for-concept-url-origin②">(2)</a>
-    <li><a href="#ref-for-concept-url-origin③">7.1. Interest group</a> <a href="#ref-for-concept-url-origin④">(2)</a>
-    <li><a href="#ref-for-concept-url-origin⑤">7.3. Auction config</a> <a href="#ref-for-concept-url-origin⑥">(2)</a> <a href="#ref-for-concept-url-origin⑦">(3)</a> <a href="#ref-for-concept-url-origin⑧">(4)</a> <a href="#ref-for-concept-url-origin⑨">(5)</a> <a href="#ref-for-concept-url-origin①⓪">(6)</a> <a href="#ref-for-concept-url-origin①①">(7)</a>
-    <li><a href="#ref-for-concept-url-origin①②">7.5. Per signals url bid generator</a>
+    <li><a href="#ref-for-concept-url-origin③">7.1. Interest group</a>
+    <li><a href="#ref-for-concept-url-origin④">7.3. Auction config</a> <a href="#ref-for-concept-url-origin⑤">(2)</a> <a href="#ref-for-concept-url-origin⑥">(3)</a>
+    <li><a href="#ref-for-concept-url-origin⑦">7.5. Per signals url bid generator</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-d4903414a495f752f42338823a0b455e" class="dfn-panel" data-for="d4903414a495f752f42338823a0b455e" id="infopanel-for-d4903414a495f752f42338823a0b455e">
@@ -3042,12 +3169,6 @@ wins the component auction and top-level auction, respectively.</p>
     <li><a href="#ref-for-string-utf-8-percent-encode">4.2. runAdAuction()</a> <a href="#ref-for-string-utf-8-percent-encode①">(2)</a> <a href="#ref-for-string-utf-8-percent-encode②">(3)</a>
    </ul>
   </aside>
-  <aside aria-labelledby="infopaneltitle-for-b683f34e44785afe04ddf0a23bb275bd" class="dfn-panel" data-for="b683f34e44785afe04ddf0a23bb275bd" id="infopanel-for-b683f34e44785afe04ddf0a23bb275bd">
-   <span id="infopaneltitle-for-b683f34e44785afe04ddf0a23bb275bd" style="display:none">Info about the 'throw' external reference.</span><a href="https://www.w3.org/TR/WebCryptoAPI/#concept-throw">https://www.w3.org/TR/WebCryptoAPI/#concept-throw</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-throw">4.1. Script Runners</a>
-   </ul>
-  </aside>
   <aside aria-labelledby="infopaneltitle-for-0ab204fb9cc9a746edaff83c0db0740a" class="dfn-panel" data-for="0ab204fb9cc9a746edaff83c0db0740a" id="infopanel-for-0ab204fb9cc9a746edaff83c0db0740a">
    <span id="infopaneltitle-for-0ab204fb9cc9a746edaff83c0db0740a" style="display:none">Info about the 'DOMException' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-DOMException">https://webidl.spec.whatwg.org/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
@@ -3085,14 +3206,16 @@ wins the component auction and top-level auction, respectively.</p>
    <span id="infopaneltitle-for-93669c631ec1ef8e696b4c083bdbe12c" style="display:none">Info about the 'Promise' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-promise">https://webidl.spec.whatwg.org/#idl-promise</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-promise">2. Joining Interest Groups</a>
-    <li><a href="#ref-for-idl-promise①">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-idl-promise①">3. Leaving Interest Groups</a>
+    <li><a href="#ref-for-idl-promise②">4.2. runAdAuction()</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-cdf224ec60dc3b08449a2fbdf3a90406" class="dfn-panel" data-for="cdf224ec60dc3b08449a2fbdf3a90406" id="infopanel-for-cdf224ec60dc3b08449a2fbdf3a90406">
    <span id="infopaneltitle-for-cdf224ec60dc3b08449a2fbdf3a90406" style="display:none">Info about the 'SecureContext' external reference.</span><a href="https://webidl.spec.whatwg.org/#SecureContext">https://webidl.spec.whatwg.org/#SecureContext</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-SecureContext">2. Joining Interest Groups</a>
-    <li><a href="#ref-for-SecureContext①">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-SecureContext①">3. Leaving Interest Groups</a>
+    <li><a href="#ref-for-SecureContext②">4.2. runAdAuction()</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-3f9c3eac015894a734faa8068fd8c2a1" class="dfn-panel" data-for="3f9c3eac015894a734faa8068fd8c2a1" id="infopanel-for-3f9c3eac015894a734faa8068fd8c2a1">
@@ -3107,14 +3230,16 @@ wins the component auction and top-level auction, respectively.</p>
    <span id="infopaneltitle-for-e270bcd7cdb4abe27bc3bb16a1975937" style="display:none">Info about the 'USVString' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-USVString">https://webidl.spec.whatwg.org/#idl-USVString</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-USVString">2. Joining Interest Groups</a> <a href="#ref-for-idl-USVString①">(2)</a> <a href="#ref-for-idl-USVString②">(3)</a> <a href="#ref-for-idl-USVString③">(4)</a> <a href="#ref-for-idl-USVString④">(5)</a> <a href="#ref-for-idl-USVString⑤">(6)</a> <a href="#ref-for-idl-USVString⑥">(7)</a> <a href="#ref-for-idl-USVString⑦">(8)</a>
-    <li><a href="#ref-for-idl-USVString⑧">4.2. runAdAuction()</a> <a href="#ref-for-idl-USVString⑨">(2)</a> <a href="#ref-for-idl-USVString①⓪">(3)</a> <a href="#ref-for-idl-USVString①①">(4)</a> <a href="#ref-for-idl-USVString①②">(5)</a> <a href="#ref-for-idl-USVString①③">(6)</a> <a href="#ref-for-idl-USVString①④">(7)</a> <a href="#ref-for-idl-USVString①⑤">(8)</a> <a href="#ref-for-idl-USVString①⑥">(9)</a> <a href="#ref-for-idl-USVString①⑦">(10)</a> <a href="#ref-for-idl-USVString①⑧">(11)</a> <a href="#ref-for-idl-USVString①⑨">(12)</a>
+    <li><a href="#ref-for-idl-USVString⑧">3. Leaving Interest Groups</a> <a href="#ref-for-idl-USVString⑨">(2)</a>
+    <li><a href="#ref-for-idl-USVString①⓪">4.2. runAdAuction()</a> <a href="#ref-for-idl-USVString①①">(2)</a> <a href="#ref-for-idl-USVString①②">(3)</a> <a href="#ref-for-idl-USVString①③">(4)</a> <a href="#ref-for-idl-USVString①④">(5)</a> <a href="#ref-for-idl-USVString①⑤">(6)</a> <a href="#ref-for-idl-USVString①⑥">(7)</a> <a href="#ref-for-idl-USVString①⑦">(8)</a> <a href="#ref-for-idl-USVString①⑧">(9)</a> <a href="#ref-for-idl-USVString①⑨">(10)</a> <a href="#ref-for-idl-USVString②⓪">(11)</a> <a href="#ref-for-idl-USVString②①">(12)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-bbe33fc7ac016834e4aaddbfd1b084a1" class="dfn-panel" data-for="bbe33fc7ac016834e4aaddbfd1b084a1" id="infopanel-for-bbe33fc7ac016834e4aaddbfd1b084a1">
    <span id="infopaneltitle-for-bbe33fc7ac016834e4aaddbfd1b084a1" style="display:none">Info about the 'a new promise' external reference.</span><a href="https://webidl.spec.whatwg.org/#a-new-promise">https://webidl.spec.whatwg.org/#a-new-promise</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-a-new-promise">2. Joining Interest Groups</a>
-    <li><a href="#ref-for-a-new-promise①">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-a-new-promise①">3. Leaving Interest Groups</a>
+    <li><a href="#ref-for-a-new-promise②">4.2. runAdAuction()</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-cf8339c4a39778ea039900ab8a77d2fe" class="dfn-panel" data-for="cf8339c4a39778ea039900ab8a77d2fe" id="infopanel-for-cf8339c4a39778ea039900ab8a77d2fe">
@@ -3127,7 +3252,7 @@ wins the component auction and top-level auction, respectively.</p>
    <span id="infopaneltitle-for-8eec6bb7878bb17dddbbb727b8d77c28" style="display:none">Info about the 'any' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-any">https://webidl.spec.whatwg.org/#idl-any</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-any">2. Joining Interest Groups</a> <a href="#ref-for-idl-any①">(2)</a>
-    <li><a href="#ref-for-idl-any②">4.2. runAdAuction()</a> <a href="#ref-for-idl-any③">(2)</a> <a href="#ref-for-idl-any④">(3)</a> <a href="#ref-for-idl-any⑤">(4)</a> <a href="#ref-for-idl-any⑥">(5)</a>
+    <li><a href="#ref-for-idl-any②">4.2. runAdAuction()</a> <a href="#ref-for-idl-any③">(2)</a> <a href="#ref-for-idl-any④">(3)</a> <a href="#ref-for-idl-any⑤">(4)</a> <a href="#ref-for-idl-any⑥">(5)</a> <a href="#ref-for-idl-any⑦">(6)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-f8062b07e25ed0281f5cbfb9a54070b4" class="dfn-panel" data-for="f8062b07e25ed0281f5cbfb9a54070b4" id="infopanel-for-f8062b07e25ed0281f5cbfb9a54070b4">
@@ -3189,14 +3314,16 @@ wins the component auction and top-level auction, respectively.</p>
    <span id="infopaneltitle-for-2ffe113543b75964c47c7e6248fef5eb" style="display:none">Info about the 'throw' external reference.</span><a href="https://webidl.spec.whatwg.org/#dfn-throw">https://webidl.spec.whatwg.org/#dfn-throw</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dfn-throw">2. Joining Interest Groups</a> <a href="#ref-for-dfn-throw①">(2)</a> <a href="#ref-for-dfn-throw②">(3)</a> <a href="#ref-for-dfn-throw③">(4)</a> <a href="#ref-for-dfn-throw④">(5)</a> <a href="#ref-for-dfn-throw⑤">(6)</a> <a href="#ref-for-dfn-throw⑥">(7)</a> <a href="#ref-for-dfn-throw⑦">(8)</a>
-    <li><a href="#ref-for-dfn-throw⑧">4.2. runAdAuction()</a> <a href="#ref-for-dfn-throw⑨">(2)</a> <a href="#ref-for-dfn-throw①⓪">(3)</a> <a href="#ref-for-dfn-throw①①">(4)</a> <a href="#ref-for-dfn-throw①②">(5)</a> <a href="#ref-for-dfn-throw①③">(6)</a> <a href="#ref-for-dfn-throw①④">(7)</a> <a href="#ref-for-dfn-throw①⑤">(8)</a> <a href="#ref-for-dfn-throw①⑥">(9)</a> <a href="#ref-for-dfn-throw①⑦">(10)</a> <a href="#ref-for-dfn-throw①⑧">(11)</a> <a href="#ref-for-dfn-throw①⑨">(12)</a> <a href="#ref-for-dfn-throw②⓪">(13)</a> <a href="#ref-for-dfn-throw②①">(14)</a>
+    <li><a href="#ref-for-dfn-throw⑧">4.1. Script Runners</a>
+    <li><a href="#ref-for-dfn-throw⑨">4.2. runAdAuction()</a> <a href="#ref-for-dfn-throw①⓪">(2)</a> <a href="#ref-for-dfn-throw①①">(3)</a> <a href="#ref-for-dfn-throw①②">(4)</a> <a href="#ref-for-dfn-throw①③">(5)</a> <a href="#ref-for-dfn-throw①④">(6)</a> <a href="#ref-for-dfn-throw①⑤">(7)</a> <a href="#ref-for-dfn-throw①⑥">(8)</a> <a href="#ref-for-dfn-throw①⑦">(9)</a> <a href="#ref-for-dfn-throw①⑧">(10)</a> <a href="#ref-for-dfn-throw①⑨">(11)</a> <a href="#ref-for-dfn-throw②⓪">(12)</a> <a href="#ref-for-dfn-throw②①">(13)</a> <a href="#ref-for-dfn-throw②②">(14)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-cee863f1f2ec91066cfb7f5d309d59dc" class="dfn-panel" data-for="cee863f1f2ec91066cfb7f5d309d59dc" id="infopanel-for-cee863f1f2ec91066cfb7f5d309d59dc">
    <span id="infopaneltitle-for-cee863f1f2ec91066cfb7f5d309d59dc" style="display:none">Info about the 'undefined' external reference.</span><a href="https://webidl.spec.whatwg.org/#idl-undefined">https://webidl.spec.whatwg.org/#idl-undefined</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-undefined">2. Joining Interest Groups</a>
-    <li><a href="#ref-for-idl-undefined①">4.1. Script Runners</a> <a href="#ref-for-idl-undefined②">(2)</a> <a href="#ref-for-idl-undefined③">(3)</a>
+    <li><a href="#ref-for-idl-undefined①">3. Leaving Interest Groups</a>
+    <li><a href="#ref-for-idl-undefined②">4.1. Script Runners</a> <a href="#ref-for-idl-undefined③">(2)</a> <a href="#ref-for-idl-undefined④">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-db891cb1cc28e2bf626982240ec36b2a" class="dfn-panel" data-for="db891cb1cc28e2bf626982240ec36b2a" id="infopanel-for-db891cb1cc28e2bf626982240ec36b2a">
@@ -3215,6 +3342,11 @@ wins the component auction and top-level auction, respectively.</p>
   </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
+   <li>
+    <a data-link-type="biblio">[]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="bc0be31e8402fbeecaef46d793534cb1">urn uuid</span>
+    </ul>
    <li>
     <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
@@ -3268,11 +3400,13 @@ wins the component auction and top-level auction, respectively.</p>
      <li><span class="dfn-paneled" id="3a2763fcaa6bc82693554cf36780c0dd">in parallel</span>
      <li><span class="dfn-paneled" id="e817c0877b8b0aa9a44aab98d651d5de">navigator</span>
      <li><span class="dfn-paneled" id="23307d34220e7159f8e5d8c231db141f">opaque origin</span>
+     <li><span class="dfn-paneled" id="e66f9f7d45934e77669cb907bd0c7636">origin</span>
      <li><span class="dfn-paneled" id="a8756513b792b8f203588906035a13bb">queue a global task</span>
      <li><span class="dfn-paneled" id="da7ed5f190c4eedd375552d6f7876301">queue a task</span>
      <li><span class="dfn-paneled" id="2233058c8f0998915af8393ee2abbc1d">relevant global object</span>
      <li><span class="dfn-paneled" id="bfb9cb6617f81a424ab20212af73bae3">relevant settings object</span>
      <li><span class="dfn-paneled" id="3bd07dd1ec2f367091cfd0df47c118a5">same origin</span>
+     <li><span class="dfn-paneled" id="e462c9f2460203de987a597cf2944ef9">scheme</span>
      <li><span class="dfn-paneled" id="2aeb953708ac6466a37697c533cf366f">serialization of an origin</span>
      <li><span class="dfn-paneled" id="3fb76ef5543342a528980b7992fbd75c">starting a new parallel queue</span>
      <li><span class="dfn-paneled" id="fad46e4a016cd6e3ca0c81a3c004e4c3">top-level origin</span>
@@ -3297,6 +3431,7 @@ wins the component auction and top-level auction, respectively.</p>
      <li><span class="dfn-paneled" id="fafd38d2108e357bcc9a6fd7f3cd04a7">list</span>
      <li><span class="dfn-paneled" id="6f2e2caca6e93162e900d159efe5b573">ordered map</span>
      <li><span class="dfn-paneled" id="80524ea4c0063fe3cf0b6c49a40e31bf">ordered set</span>
+     <li><span class="dfn-paneled" id="5191a0c00b6ec5f93646e492ae7ec62c">remove</span>
      <li><span class="dfn-paneled" id="c186cdbfe7e0e7f10f543af94aebdac4">serializing a javascript value to a json string</span>
      <li><span class="dfn-paneled" id="5c3d3462610d78bc92b91000cc511bc4">set</span>
      <li><span class="dfn-paneled" id="bed8381510f5967f5d37a33de776e857">size <small>(for list)</small></span>
@@ -3332,11 +3467,6 @@ wins the component auction and top-level auction, respectively.</p>
      <li><span class="dfn-paneled" id="07df417653faafb38ece7480f2c15a3e">url parser</span>
      <li><span class="dfn-paneled" id="4cd5cba6c3b356beb9ed1d910eaf8ee9">url serializer</span>
      <li><span class="dfn-paneled" id="89c942a6be0752175bb866d54a9b3ec0">utf-8 percent-encode</span>
-    </ul>
-   <li>
-    <a data-link-type="biblio">[WebCryptoAPI]</a> defines the following terms:
-    <ul>
-     <li><span class="dfn-paneled" id="b683f34e44785afe04ddf0a23bb275bd">throw</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
@@ -3387,8 +3517,6 @@ wins the component auction and top-level auction, respectively.</p>
    <dd>Ian Clelland. <a href="https://w3c.github.io/webappsec-permissions-policy/"><cite>Permissions Policy</cite></a>. URL: <a href="https://w3c.github.io/webappsec-permissions-policy/">https://w3c.github.io/webappsec-permissions-policy/</a>
    <dt id="biblio-url">[URL]
    <dd>Anne van Kesteren. <a href="https://url.spec.whatwg.org/"><cite>URL Standard</cite></a>. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
-   <dt id="biblio-webcryptoapi">[WebCryptoAPI]
-   <dd>Mark Watson. <a href="https://w3c.github.io/webcrypto/"><cite>Web Cryptography API</cite></a>. URL: <a href="https://w3c.github.io/webcrypto/">https://w3c.github.io/webcrypto/</a>
    <dt id="biblio-webidl">[WEBIDL]
    <dd>Edgar Chen; Timothy Gu. <a href="https://webidl.spec.whatwg.org/"><cite>Web IDL Standard</cite></a>. Living Standard. URL: <a href="https://webidl.spec.whatwg.org/">https://webidl.spec.whatwg.org/</a>
   </dl>
@@ -3421,6 +3549,16 @@ wins the component auction and top-level auction, respectively.</p>
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any"><c- b>any</c-></a> <a data-type="any " href="#dom-auctionadinterestgroup-userbiddingsignals"><code><c- g>userBiddingSignals</c-></code></a>;
   <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-auctionad"><c- n>AuctionAd</c-></a>> <a data-type="sequence<AuctionAd> " href="#dom-auctionadinterestgroup-ads"><code><c- g>ads</c-></code></a>;
   <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence"><c- b>sequence</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-auctionad"><c- n>AuctionAd</c-></a>> <a data-type="sequence<AuctionAd> " href="#dom-auctionadinterestgroup-adcomponents"><code><c- g>adComponents</c-></code></a>;
+};
+
+[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext"><c- g>SecureContext</c-></a>]
+<c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator"><c- g>Navigator</c-></a> {
+  <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise"><c- b>Promise</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined"><c- b>undefined</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-navigator-leaveadinterestgroup"><c- g>leaveAdInterestGroup</c-></a>(<a data-link-type="idl-name" href="#dictdef-auctionadinterestgroupkey"><c- n>AuctionAdInterestGroupKey</c-></a> <a href="#dom-navigator-leaveadinterestgroup-group-group"><code><c- g>group</c-></code></a>);
+};
+
+<c- b>dictionary</c-> <a href="#dictdef-auctionadinterestgroupkey"><code><c- g>AuctionAdInterestGroupKey</c-></code></a> {
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-type="USVString " href="#dom-auctionadinterestgroupkey-owner"><code><c- g>owner</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-USVString"><c- b>USVString</c-></a> <a data-type="USVString " href="#dom-auctionadinterestgroupkey-name"><code><c- g>name</c-></code></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>InterestGroupBiddingScriptRunnerGlobalScope</c->,
@@ -3623,6 +3761,18 @@ wins the component auction and top-level auction, respectively.</p>
     <li><a href="#ref-for-interest-group-estimated-size">2. Joining Interest Groups</a>
    </ul>
   </aside>
+  <aside aria-labelledby="infopaneltitle-for-dictdef-auctionadinterestgroupkey" class="dfn-panel" data-for="dictdef-auctionadinterestgroupkey" id="infopanel-for-dictdef-auctionadinterestgroupkey">
+   <span id="infopaneltitle-for-dictdef-auctionadinterestgroupkey" style="display:none">Info about the 'AuctionAdInterestGroupKey' definition.</span><b><a href="#dictdef-auctionadinterestgroupkey">#dictdef-auctionadinterestgroupkey</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-auctionadinterestgroupkey">3. Leaving Interest Groups</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-dom-navigator-leaveadinterestgroup" class="dfn-panel" data-for="dom-navigator-leaveadinterestgroup" id="infopanel-for-dom-navigator-leaveadinterestgroup">
+   <span id="infopaneltitle-for-dom-navigator-leaveadinterestgroup" style="display:none">Info about the 'leaveAdInterestGroup(group)' definition.</span><b><a href="#dom-navigator-leaveadinterestgroup">#dom-navigator-leaveadinterestgroup</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-navigator-leaveadinterestgroup">3. Leaving Interest Groups</a> <a href="#ref-for-dom-navigator-leaveadinterestgroup①">(2)</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-interestgroupbiddingscriptrunnerglobalscope" class="dfn-panel" data-for="interestgroupbiddingscriptrunnerglobalscope" id="infopanel-for-interestgroupbiddingscriptrunnerglobalscope">
    <span id="infopaneltitle-for-interestgroupbiddingscriptrunnerglobalscope" style="display:none">Info about the 'InterestGroupBiddingScriptRunnerGlobalScope' definition.</span><b><a href="#interestgroupbiddingscriptrunnerglobalscope">#interestgroupbiddingscriptrunnerglobalscope</a></b><b>Referenced in:</b>
    <ul>
@@ -3765,7 +3915,7 @@ wins the component auction and top-level auction, respectively.</p>
   <aside aria-labelledby="infopaneltitle-for-dom-auctionadconfig-seller" class="dfn-panel" data-for="dom-auctionadconfig-seller" id="infopanel-for-dom-auctionadconfig-seller">
    <span id="infopaneltitle-for-dom-auctionadconfig-seller" style="display:none">Info about the 'seller' definition.</span><b><a href="#dom-auctionadconfig-seller">#dom-auctionadconfig-seller</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-auctionadconfig-seller">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-dom-auctionadconfig-seller">4.2. runAdAuction()</a> <a href="#ref-for-dom-auctionadconfig-seller①">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-dom-auctionadconfig-decisionlogicurl" class="dfn-panel" data-for="dom-auctionadconfig-decisionlogicurl" id="infopanel-for-dom-auctionadconfig-decisionlogicurl">
@@ -3926,13 +4076,14 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
   <aside aria-labelledby="infopaneltitle-for-fetch-resource" class="dfn-panel" data-for="fetch-resource" id="infopanel-for-fetch-resource">
    <span id="infopaneltitle-for-fetch-resource" style="display:none">Info about the 'fetch resource' definition.</span><b><a href="#fetch-resource">#fetch-resource</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-fetch-resource">4.2. runAdAuction()</a> <a href="#ref-for-fetch-resource①">(2)</a> <a href="#ref-for-fetch-resource②">(3)</a>
+    <li><a href="#ref-for-fetch-resource">4.2. runAdAuction()</a> <a href="#ref-for-fetch-resource①">(2)</a> <a href="#ref-for-fetch-resource②">(3)</a> <a href="#ref-for-fetch-resource③">(4)</a> <a href="#ref-for-fetch-resource④">(5)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-build-trusted-bidding-signals-url" class="dfn-panel" data-for="build-trusted-bidding-signals-url" id="infopanel-for-build-trusted-bidding-signals-url">
    <span id="infopaneltitle-for-build-trusted-bidding-signals-url" style="display:none">Info about the 'build trusted bidding signals url' definition.</span><b><a href="#build-trusted-bidding-signals-url">#build-trusted-bidding-signals-url</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-build-trusted-bidding-signals-url">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-build-trusted-bidding-signals-url①">7.1. Interest group</a> <a href="#ref-for-build-trusted-bidding-signals-url②">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-serialize-an-integer" class="dfn-panel" data-for="serialize-an-integer" id="infopanel-for-serialize-an-integer">
@@ -3944,25 +4095,25 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
   <aside aria-labelledby="infopaneltitle-for-evaluate-script" class="dfn-panel" data-for="evaluate-script" id="infopanel-for-evaluate-script">
    <span id="infopaneltitle-for-evaluate-script" style="display:none">Info about the 'evaluate script' definition.</span><b><a href="#evaluate-script">#evaluate-script</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-evaluate-script">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script①">(2)</a>
+    <li><a href="#ref-for-evaluate-script">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script①">(2)</a> <a href="#ref-for-evaluate-script②">(3)</a> <a href="#ref-for-evaluate-script③">(4)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-evaluate-script-script" class="dfn-panel" data-for="evaluate-script-script" id="infopanel-for-evaluate-script-script">
    <span id="infopaneltitle-for-evaluate-script-script" style="display:none">Info about the 'script' definition.</span><b><a href="#evaluate-script-script">#evaluate-script-script</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-evaluate-script-script">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script-script①">(2)</a>
+    <li><a href="#ref-for-evaluate-script-script">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script-script①">(2)</a> <a href="#ref-for-evaluate-script-script②">(3)</a> <a href="#ref-for-evaluate-script-script③">(4)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-evaluate-script-functionname" class="dfn-panel" data-for="evaluate-script-functionname" id="infopanel-for-evaluate-script-functionname">
    <span id="infopaneltitle-for-evaluate-script-functionname" style="display:none">Info about the 'functionName' definition.</span><b><a href="#evaluate-script-functionname">#evaluate-script-functionname</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-evaluate-script-functionname">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script-functionname①">(2)</a>
+    <li><a href="#ref-for-evaluate-script-functionname">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script-functionname①">(2)</a> <a href="#ref-for-evaluate-script-functionname②">(3)</a> <a href="#ref-for-evaluate-script-functionname③">(4)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-evaluate-script-arguments" class="dfn-panel" data-for="evaluate-script-arguments" id="infopanel-for-evaluate-script-arguments">
    <span id="infopaneltitle-for-evaluate-script-arguments" style="display:none">Info about the 'arguments' definition.</span><b><a href="#evaluate-script-arguments">#evaluate-script-arguments</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-evaluate-script-arguments">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script-arguments①">(2)</a>
+    <li><a href="#ref-for-evaluate-script-arguments">4.2. runAdAuction()</a> <a href="#ref-for-evaluate-script-arguments①">(2)</a> <a href="#ref-for-evaluate-script-arguments②">(3)</a> <a href="#ref-for-evaluate-script-arguments③">(4)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-generate-reporting-urls" class="dfn-panel" data-for="generate-reporting-urls" id="infopanel-for-generate-reporting-urls">
@@ -3989,6 +4140,7 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
     <li><a href="#ref-for-interest-group">2. Joining Interest Groups</a> <a href="#ref-for-interest-group①">(2)</a> <a href="#ref-for-interest-group②">(3)</a>
     <li><a href="#ref-for-interest-group">7.1. Interest group</a>
     <li><a href="#ref-for-interest-group③">7.5. Per signals url bid generator</a>
+    <li><a href="#ref-for-interest-group④">7.6. Generated bid</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-expiry" class="dfn-panel" data-for="interest-group-expiry" id="infopanel-for-interest-group-expiry">
@@ -4001,14 +4153,16 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <span id="infopaneltitle-for-interest-group-owner" style="display:none">Info about the 'owner' definition.</span><b><a href="#interest-group-owner">#interest-group-owner</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-interest-group-owner">2. Joining Interest Groups</a> <a href="#ref-for-interest-group-owner①">(2)</a> <a href="#ref-for-interest-group-owner②">(3)</a> <a href="#ref-for-interest-group-owner③">(4)</a>
-    <li><a href="#ref-for-interest-group-owner④">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-interest-group-owner④">4.2. runAdAuction()</a> <a href="#ref-for-interest-group-owner⑤">(2)</a> <a href="#ref-for-interest-group-owner⑥">(3)</a>
+    <li><a href="#ref-for-interest-group-owner⑦">7.1. Interest group</a> <a href="#ref-for-interest-group-owner⑧">(2)</a> <a href="#ref-for-interest-group-owner⑨">(3)</a> <a href="#ref-for-interest-group-owner①⓪">(4)</a> <a href="#ref-for-interest-group-owner①①">(5)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-name" class="dfn-panel" data-for="interest-group-name" id="infopanel-for-interest-group-name">
    <span id="infopaneltitle-for-interest-group-name" style="display:none">Info about the 'name' definition.</span><b><a href="#interest-group-name">#interest-group-name</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-interest-group-name">2. Joining Interest Groups</a> <a href="#ref-for-interest-group-name①">(2)</a> <a href="#ref-for-interest-group-name②">(3)</a>
-    <li><a href="#ref-for-interest-group-name③">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-interest-group-name③">4.2. runAdAuction()</a> <a href="#ref-for-interest-group-name④">(2)</a>
+    <li><a href="#ref-for-interest-group-name⑤">7.1. Interest group</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-priority" class="dfn-panel" data-for="interest-group-priority" id="infopanel-for-interest-group-priority">
@@ -4047,8 +4201,8 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <span id="infopaneltitle-for-interest-group-bidding-url" style="display:none">Info about the 'bidding url' definition.</span><b><a href="#interest-group-bidding-url">#interest-group-bidding-url</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-interest-group-bidding-url">2. Joining Interest Groups</a> <a href="#ref-for-interest-group-bidding-url①">(2)</a>
-    <li><a href="#ref-for-interest-group-bidding-url②">4.2. runAdAuction()</a>
-    <li><a href="#ref-for-interest-group-bidding-url③">7.1. Interest group</a>
+    <li><a href="#ref-for-interest-group-bidding-url②">4.2. runAdAuction()</a> <a href="#ref-for-interest-group-bidding-url③">(2)</a>
+    <li><a href="#ref-for-interest-group-bidding-url④">7.1. Interest group</a> <a href="#ref-for-interest-group-bidding-url⑤">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-bidding-wasm-helper-url" class="dfn-panel" data-for="interest-group-bidding-wasm-helper-url" id="infopanel-for-interest-group-bidding-wasm-helper-url">
@@ -4056,12 +4210,14 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <ul>
     <li><a href="#ref-for-interest-group-bidding-wasm-helper-url">2. Joining Interest Groups</a> <a href="#ref-for-interest-group-bidding-wasm-helper-url①">(2)</a>
     <li><a href="#ref-for-interest-group-bidding-wasm-helper-url②">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-interest-group-bidding-wasm-helper-url③">7.1. Interest group</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-daily-update-url" class="dfn-panel" data-for="interest-group-daily-update-url" id="infopanel-for-interest-group-daily-update-url">
    <span id="infopaneltitle-for-interest-group-daily-update-url" style="display:none">Info about the 'daily update url' definition.</span><b><a href="#interest-group-daily-update-url">#interest-group-daily-update-url</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-interest-group-daily-update-url">2. Joining Interest Groups</a> <a href="#ref-for-interest-group-daily-update-url①">(2)</a>
+    <li><a href="#ref-for-interest-group-daily-update-url②">7.1. Interest group</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-trusted-bidding-signals-url" class="dfn-panel" data-for="interest-group-trusted-bidding-signals-url" id="infopanel-for-interest-group-trusted-bidding-signals-url">
@@ -4069,7 +4225,8 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <ul>
     <li><a href="#ref-for-interest-group-trusted-bidding-signals-url">2. Joining Interest Groups</a> <a href="#ref-for-interest-group-trusted-bidding-signals-url①">(2)</a> <a href="#ref-for-interest-group-trusted-bidding-signals-url②">(3)</a>
     <li><a href="#ref-for-interest-group-trusted-bidding-signals-url③">4.2. runAdAuction()</a>
-    <li><a href="#ref-for-interest-group-trusted-bidding-signals-url④">7.4. Per buyer bid generator</a>
+    <li><a href="#ref-for-interest-group-trusted-bidding-signals-url④">7.1. Interest group</a>
+    <li><a href="#ref-for-interest-group-trusted-bidding-signals-url⑤">7.4. Per buyer bid generator</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-interest-group-trusted-bidding-signals-keys" class="dfn-panel" data-for="interest-group-trusted-bidding-signals-keys" id="infopanel-for-interest-group-trusted-bidding-signals-keys">
@@ -4136,18 +4293,21 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <span id="infopaneltitle-for-auction-config-seller" style="display:none">Info about the 'seller' definition.</span><b><a href="#auction-config-seller">#auction-config-seller</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-auction-config-seller">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-seller①">(2)</a> <a href="#ref-for-auction-config-seller②">(3)</a> <a href="#ref-for-auction-config-seller③">(4)</a> <a href="#ref-for-auction-config-seller④">(5)</a> <a href="#ref-for-auction-config-seller⑤">(6)</a>
+    <li><a href="#ref-for-auction-config-seller⑥">7.3. Auction config</a> <a href="#ref-for-auction-config-seller⑦">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-auction-config-decision-logic-url" class="dfn-panel" data-for="auction-config-decision-logic-url" id="infopanel-for-auction-config-decision-logic-url">
    <span id="infopaneltitle-for-auction-config-decision-logic-url" style="display:none">Info about the 'decision logic url' definition.</span><b><a href="#auction-config-decision-logic-url">#auction-config-decision-logic-url</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-auction-config-decision-logic-url">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-decision-logic-url①">(2)</a>
+    <li><a href="#ref-for-auction-config-decision-logic-url">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-decision-logic-url①">(2)</a> <a href="#ref-for-auction-config-decision-logic-url②">(3)</a>
+    <li><a href="#ref-for-auction-config-decision-logic-url③">7.3. Auction config</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-auction-config-trusted-scoring-signals-url" class="dfn-panel" data-for="auction-config-trusted-scoring-signals-url" id="infopanel-for-auction-config-trusted-scoring-signals-url">
    <span id="infopaneltitle-for-auction-config-trusted-scoring-signals-url" style="display:none">Info about the 'trusted scoring signals url' definition.</span><b><a href="#auction-config-trusted-scoring-signals-url">#auction-config-trusted-scoring-signals-url</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-auction-config-trusted-scoring-signals-url">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-auction-config-trusted-scoring-signals-url①">7.3. Auction config</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-auction-config-interest-group-buyers" class="dfn-panel" data-for="auction-config-interest-group-buyers" id="infopanel-for-auction-config-interest-group-buyers">
@@ -4159,7 +4319,7 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
   <aside aria-labelledby="infopaneltitle-for-auction-config-auction-signals" class="dfn-panel" data-for="auction-config-auction-signals" id="infopanel-for-auction-config-auction-signals">
    <span id="infopaneltitle-for-auction-config-auction-signals" style="display:none">Info about the 'auction signals' definition.</span><b><a href="#auction-config-auction-signals">#auction-config-auction-signals</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-auction-config-auction-signals">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-auction-signals①">(2)</a>
+    <li><a href="#ref-for-auction-config-auction-signals">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-auction-signals①">(2)</a> <a href="#ref-for-auction-config-auction-signals②">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-auction-config-seller-signals" class="dfn-panel" data-for="auction-config-seller-signals" id="infopanel-for-auction-config-seller-signals">
@@ -4177,7 +4337,7 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
   <aside aria-labelledby="infopaneltitle-for-auction-config-per-buyer-signals" class="dfn-panel" data-for="auction-config-per-buyer-signals" id="infopanel-for-auction-config-per-buyer-signals">
    <span id="infopaneltitle-for-auction-config-per-buyer-signals" style="display:none">Info about the 'per buyer signals' definition.</span><b><a href="#auction-config-per-buyer-signals">#auction-config-per-buyer-signals</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-auction-config-per-buyer-signals">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-per-buyer-signals①">(2)</a> <a href="#ref-for-auction-config-per-buyer-signals②">(3)</a> <a href="#ref-for-auction-config-per-buyer-signals③">(4)</a> <a href="#ref-for-auction-config-per-buyer-signals④">(5)</a>
+    <li><a href="#ref-for-auction-config-per-buyer-signals">4.2. runAdAuction()</a> <a href="#ref-for-auction-config-per-buyer-signals①">(2)</a> <a href="#ref-for-auction-config-per-buyer-signals②">(3)</a> <a href="#ref-for-auction-config-per-buyer-signals③">(4)</a> <a href="#ref-for-auction-config-per-buyer-signals④">(5)</a> <a href="#ref-for-auction-config-per-buyer-signals⑤">(6)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-auction-config-per-buyer-timeouts" class="dfn-panel" data-for="auction-config-per-buyer-timeouts" id="infopanel-for-auction-config-per-buyer-timeouts">
@@ -4271,7 +4431,7 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <span id="infopaneltitle-for-generated-bid-bid" style="display:none">Info about the 'bid' definition.</span><b><a href="#generated-bid-bid">#generated-bid-bid</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-generated-bid-bid">4.1. Script Runners</a>
-    <li><a href="#ref-for-generated-bid-bid①">4.2. runAdAuction()</a> <a href="#ref-for-generated-bid-bid②">(2)</a> <a href="#ref-for-generated-bid-bid③">(3)</a>
+    <li><a href="#ref-for-generated-bid-bid①">4.2. runAdAuction()</a> <a href="#ref-for-generated-bid-bid②">(2)</a> <a href="#ref-for-generated-bid-bid③">(3)</a> <a href="#ref-for-generated-bid-bid④">(4)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-generated-bid-ad" class="dfn-panel" data-for="generated-bid-ad" id="infopanel-for-generated-bid-ad">
@@ -4284,7 +4444,7 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <span id="infopaneltitle-for-generated-bid-ad-descriptor" style="display:none">Info about the 'ad descriptor' definition.</span><b><a href="#generated-bid-ad-descriptor">#generated-bid-ad-descriptor</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-generated-bid-ad-descriptor">4.1. Script Runners</a>
-    <li><a href="#ref-for-generated-bid-ad-descriptor①">4.2. runAdAuction()</a> <a href="#ref-for-generated-bid-ad-descriptor②">(2)</a>
+    <li><a href="#ref-for-generated-bid-ad-descriptor①">4.2. runAdAuction()</a> <a href="#ref-for-generated-bid-ad-descriptor②">(2)</a> <a href="#ref-for-generated-bid-ad-descriptor③">(3)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-generated-bid-ad-component-descriptors" class="dfn-panel" data-for="generated-bid-ad-component-descriptors" id="infopanel-for-generated-bid-ad-component-descriptors">
@@ -4305,6 +4465,12 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
     <li><a href="#ref-for-generated-bid-modeling-signals">4.1. Script Runners</a>
    </ul>
   </aside>
+  <aside aria-labelledby="infopaneltitle-for-generated-bid-interest-group" class="dfn-panel" data-for="generated-bid-interest-group" id="infopanel-for-generated-bid-interest-group">
+   <span id="infopaneltitle-for-generated-bid-interest-group" style="display:none">Info about the 'interest group' definition.</span><b><a href="#generated-bid-interest-group">#generated-bid-interest-group</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-generated-bid-interest-group">4.2. runAdAuction()</a> <a href="#ref-for-generated-bid-interest-group①">(2)</a> <a href="#ref-for-generated-bid-interest-group②">(3)</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-ad-descriptor" class="dfn-panel" data-for="ad-descriptor" id="infopanel-for-ad-descriptor">
    <span id="infopaneltitle-for-ad-descriptor" style="display:none">Info about the '7.7. Ad descriptor' definition.</span><b><a href="#ad-descriptor">#ad-descriptor</a></b><b>Referenced in:</b>
    <ul>
@@ -4317,7 +4483,7 @@ accept' definition.</span><b><a href="#create-a-request-accept">#create-a-reques
    <span id="infopaneltitle-for-ad-descriptor-url" style="display:none">Info about the 'url' definition.</span><b><a href="#ad-descriptor-url">#ad-descriptor-url</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-ad-descriptor-url">4.1. Script Runners</a> <a href="#ref-for-ad-descriptor-url①">(2)</a> <a href="#ref-for-ad-descriptor-url②">(3)</a>
-    <li><a href="#ref-for-ad-descriptor-url③">4.2. runAdAuction()</a>
+    <li><a href="#ref-for-ad-descriptor-url③">4.2. runAdAuction()</a> <a href="#ref-for-ad-descriptor-url④">(2)</a>
    </ul>
   </aside>
   <aside aria-labelledby="infopaneltitle-for-ad-descriptor-size" class="dfn-panel" data-for="ad-descriptor-size" id="infopanel-for-ad-descriptor-size">
