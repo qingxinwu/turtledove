@@ -153,7 +153,7 @@ The <dfn for=Navigator method>joinAdInterestGroup(|group|)</dfn> method steps ar
 <div class="note">
 
 Temporarily, Chromium does not include the <a for="dictionary member"><span class="allow-2119">required</span></a> keyword
-for "{{AuctionAdInterestGroup/lifetimeMs}}", and instead starts this algorithm with the step
+for , and instead starts this algorithm with the step
 
 1. If |group|["{{AuctionAdInterestGroup/lifetimeMs}}"] does not [=map/exist=], throw a {{TypeError}}.
 
