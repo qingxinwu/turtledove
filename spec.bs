@@ -1337,6 +1337,92 @@ To <dfn>convert to an AuctionAd sequence</dfn> given a [=list=]-or-null |ads|:
 </div>
 
 <div algorithm>
+To <dfn>noise and bucket join count</dfn> given a {{long}} |joinCount|:
+  
+  1. Let |bucket| be 16.
+  1. If |joinCount| is less than 1, set |joinCount| to 1.
+  1. Switch on |joinCount| less than or equal to:
+      <dl class=switch>
+      <dt>10
+      <dd>Set |bucket| to |joinCount|
+      <dt>20
+      <dd>Set |bucket| to 11
+      <dt>30
+      <dd>Set |bucket| to 12
+      <dt>40
+      <dd>Set |bucket| to 13
+      <dt>50
+      <dd>Set |bucket| to 14
+      <dt>100
+      <dd>Set |bucket| to 15
+  1. TODO: how to spec the noise signal part, which requires getting random numbers?
+  1. Return the result of running [=noise signals=] with |bucket|, 1, and 16.
+</div>
+
+<div algorithm>
+To <dfn>noise and bucket recency</dfn> given a [=duration=] |recency|:
+  
+  1. Let |bucket| be 31.
+  1. If |recency| is less than 0 minutes, set |recency| to 0.
+  1. Switch on |recency| less than:
+      <dl class=switch>
+      <dt>10
+      <dd>Set |bucket| to 
+      <dt>15
+      <dd>Set |bucket| to 10
+      <dt>20
+      <dd>Set |bucket| to 11
+      <dt>30
+      <dd>Set |bucket| to 12
+      <dt>40
+      <dd>Set |bucket| to 13
+      <dt>50
+      <dd>Set |bucket| to 14
+      <dt>60
+      <dd>Set |bucket| to 15
+      <dt>75
+      <dd>Set |bucket| to 16
+      <dt>90
+      <dd>Set |bucket| to 17
+      <dt>105
+      <dd>Set |bucket| to 18
+      <dt>120
+      <dd>Set |bucket| to 19
+      <dt>240
+      <dd>Set |bucket| to 20
+      <dt>720
+      <dd>Set |bucket| to 21
+      <dt>1440
+      <dd>Set |bucket| to 22
+      <dt>2160
+      <dd>Set |bucket| to 23
+      <dt>2880
+      <dd>Set |bucket| to 24
+      <dt>4320
+      <dd>Set |bucket| to 25
+      <dt>5760
+      <dd>Set |bucket| to 26
+      <dt>10080
+      <dd>Set |bucket| to 27
+      <dt>20160
+      <dd>Set |bucket| to 28
+      <dt>30240
+      <dd>Set |bucket| to 29
+      <dt>40320
+      <dd>Set |bucket| to 30
+  1. Return the result of running [=noise signals=] with |bucket|, 0, and 31.
+</div>
+
+<div algorithm>
+To <dfn>noise and mask modeling signals</dfn> given a {{unsigned short}} |modelingSignals|:
+  
+  1. Let |mask| be 0x0FFF.
+  1. Let |maskedModelingSignals| be <code>|modelingSignals| & |mask|</code>.
+  1. 
+  1. Return the result of running [=noise signals=] with 0, and |mask|.
+</div>
+
+<div algorithm>
 
 To <dfn>score and rank a bid</dfn> given an [=auction config=] |auctionConfig|, a [=generated bid=]
 |generatedBid|, a [=leading bid info=] |leadingBidInfo|, a [=string=] |decisionLogicScript|, a
@@ -2846,9 +2932,9 @@ dictionary PreviousWin {
 dictionary BiddingBrowserSignals {
   required DOMString topWindowHostname;
   required USVString seller;
-  required long joinCount;
+  required octet joinCount;
   required long bidCount;
-  required long recency;
+  required octet recency;
 
   USVString topLevelSeller;
   sequence<PreviousWin> prevWinsMs;
