@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version d5d58a306, updated Fri Jan 26 16:12:28 2024 -0800" name="generator">
   <link href="https://wicg.github.io/turtledove/" rel="canonical">
-  <meta content="04887689a5fd5e7e23d06a2f327d8aea5f7c12cb" name="revision">
+  <meta content="0c616e49c9877ad296246d614e48cb15be4ae92a" name="revision">
 <style>
 /* Put nice boxes around each algorithm. */
 [data-algorithm]:not(.heading) {
@@ -762,7 +762,7 @@ var[data-var-color="6"] { background-color: #FFBCF2; box-shadow: 0 0 0 2px #FFBC
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Protected Audience (formerly FLEDGE)</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-03-05">5 March 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-03-06">6 March 2024</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1540,20 +1540,6 @@ given <var>global</var>, to <a data-link-type="dfn" href="https://webidl.spec.wh
          <li data-md>
           <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task⑨">Queue a global task</a> on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-manipulation-task-source" id="ref-for-dom-manipulation-task-source⑨">DOM manipulation task source</a>, given <var>global</var>, to
  resolve <var>p</var> with <var>result</var>.</p>
-         <li data-md>
-          <p><a data-link-type="dfn" href="#increment-ad-k-anonymity-count" id="ref-for-increment-ad-k-anonymity-count">Increment ad k-anonymity count</a> given <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group">interest group</a> and <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url">url</a>.</p>
-         <li data-md>
-          <p>If <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-component-descriptors" id="ref-for-generated-bid-ad-component-descriptors">ad component descriptors</a> is not null:</p>
-          <ol>
-           <li data-md>
-            <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑧">For each</a> <var>adComponentDescriptor</var> in <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-component-descriptors" id="ref-for-generated-bid-ad-component-descriptors①">ad component descriptors</a>:</p>
-            <ol>
-             <li data-md>
-              <p><a data-link-type="dfn" href="#increment-component-ad-k-anonymity-count" id="ref-for-increment-component-ad-k-anonymity-count">Increment component ad k-anonymity count</a> given <var>adComponentDescriptor</var>’s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url①">url</a>.</p>
-            </ol>
-          </ol>
-         <li data-md>
-          <p><a data-link-type="dfn" href="#increment-reporting-id-k-anonymity-count" id="ref-for-increment-reporting-id-k-anonymity-count">Increment reporting ID k-anonymity count</a> given <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group①">interest group</a> and <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor①">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url②">url</a>.</p>
         </ol>
        <li data-md>
         <p>Run <a data-link-type="dfn" href="#interest-group-update" id="ref-for-interest-group-update①">interest group update</a> with <var>auctionConfig</var>’s <a data-link-type="dfn" href="#auction-config-interest-group-buyers" id="ref-for-auction-config-interest-group-buyers①">interest group buyers</a>.</p>
@@ -1664,9 +1650,9 @@ given <var>global</var>, to <a data-link-type="dfn" href="https://webidl.spec.wh
      <li data-md>
       <p>Let <var>winningBid</var> be <var>winningBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid②">leading bid</a>.</p>
      <li data-md>
-      <p>Set <var>pendingConfig</var>’s <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#fenced-frame-config-mapped-url" id="ref-for-fenced-frame-config-mapped-url①">mapped url</a>'s <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#mapped-url-value" id="ref-for-mapped-url-value①">value</a> to <var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor②">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url③">url</a>.</p>
+      <p>Set <var>pendingConfig</var>’s <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#fenced-frame-config-mapped-url" id="ref-for-fenced-frame-config-mapped-url①">mapped url</a>'s <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#mapped-url-value" id="ref-for-mapped-url-value①">value</a> to <var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url">url</a>.</p>
      <li data-md>
-      <p>Let <var>adSize</var> be <var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor③">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-size" id="ref-for-ad-descriptor-size">size</a>.</p>
+      <p>Let <var>adSize</var> be <var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor①">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-size" id="ref-for-ad-descriptor-size">size</a>.</p>
      <li data-md>
       <p>If <var>adSize</var> is not null:</p>
       <ol>
@@ -1686,10 +1672,10 @@ given <var>global</var>, to <a data-link-type="dfn" href="https://webidl.spec.wh
       <dl>
        <dt data-md>owner
        <dd data-md>
-        <p><var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group②">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner②②">owner</a></p>
+        <p><var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner②②">owner</a></p>
        <dt data-md>name
        <dd data-md>
-        <p><var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group③">interest group</a>'s <a data-link-type="dfn" href="#interest-group-name" id="ref-for-interest-group-name⑤">name</a></p>
+        <p><var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group①">interest group</a>'s <a data-link-type="dfn" href="#interest-group-name" id="ref-for-interest-group-name⑤">name</a></p>
       </dl>
      <li data-md>
       <p>Let <var>fencedFrameReportingMap</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map①">map</a> «[ "<code>buyer</code>" → «», "<code>seller</code>" → «» ]».</p>
@@ -1726,7 +1712,7 @@ given <var>global</var>, to <a data-link-type="dfn" href="https://webidl.spec.wh
       </ol>
      <li data-md>
       <p>Set <var>pendingConfig</var>’s <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#fenced-frame-config-nested-configs" id="ref-for-fenced-frame-config-nested-configs①">nested configs</a>'s <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#nested-configs-value" id="ref-for-nested-configs-value①">value</a> to
- the result of running <a data-link-type="dfn" href="#create-nested-configs" id="ref-for-create-nested-configs">create nested configs</a> with <var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-component-descriptors" id="ref-for-generated-bid-ad-component-descriptors②">ad component descriptors</a>.</p>
+ the result of running <a data-link-type="dfn" href="#create-nested-configs" id="ref-for-create-nested-configs">create nested configs</a> with <var>winningBid</var>’s <a data-link-type="dfn" href="#generated-bid-ad-component-descriptors" id="ref-for-generated-bid-ad-component-descriptors">ad component descriptors</a>.</p>
      <li data-md>
       <p>Return <var>pendingConfig</var>.</p>
     </ol>
@@ -1735,6 +1721,22 @@ given <var>global</var>, to <a data-link-type="dfn" href="https://webidl.spec.wh
     <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="asynchronously-finish-reporting">asynchronously finish reporting</dfn> given a <a data-link-type="dfn" href="https://wicg.github.io/fenced-frame/#fencedframetype-fenced-frame-reporting-map" id="ref-for-fencedframetype-fenced-frame-reporting-map">fenced frame reporting map</a> <var>reportingMap</var>, <a data-link-type="dfn" href="#leading-bid-info" id="ref-for-leading-bid-info①">leading bid info</a> <var>leadingBidInfo</var>,
 and <a data-link-type="dfn" href="#auction-report-info" id="ref-for-auction-report-info②">auction report info</a> <var>auctionReportInfo</var>.</p>
     <ol>
+     <li data-md>
+      <p>Let <var>winner</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid③">leading bid</a>.</p>
+     <li data-md>
+      <p><a data-link-type="dfn" href="#increment-ad-k-anonymity-count" id="ref-for-increment-ad-k-anonymity-count">Increment ad k-anonymity count</a> given <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group②">interest group</a> and <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor②">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url①">url</a>.</p>
+     <li data-md>
+      <p>If <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-component-descriptors" id="ref-for-generated-bid-ad-component-descriptors①">ad component descriptors</a> is not null:</p>
+      <ol>
+       <li data-md>
+        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑧">For each</a> <var>adComponentDescriptor</var> in <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-component-descriptors" id="ref-for-generated-bid-ad-component-descriptors②">ad component descriptors</a>:</p>
+        <ol>
+         <li data-md>
+          <p><a data-link-type="dfn" href="#increment-component-ad-k-anonymity-count" id="ref-for-increment-component-ad-k-anonymity-count">Increment component ad k-anonymity count</a> given <var>adComponentDescriptor</var>’s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url②">url</a>.</p>
+        </ol>
+      </ol>
+     <li data-md>
+      <p><a data-link-type="dfn" href="#increment-reporting-id-k-anonymity-count" id="ref-for-increment-reporting-id-k-anonymity-count">Increment reporting ID k-anonymity count</a> given <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group③">interest group</a> and <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-ad-descriptor" id="ref-for-generated-bid-ad-descriptor③">ad descriptor</a>'s <a data-link-type="dfn" href="#ad-descriptor-url" id="ref-for-ad-descriptor-url③">url</a>.</p>
      <li data-md>
       <p>Let <var>buyerDone</var>, <var>sellerDone</var>, and <var>componentSellerDone</var> be <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#boolean" id="ref-for-boolean">booleans</a>, initially false.</p>
      <li data-md>
@@ -2078,8 +2080,7 @@ result of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#serialize
        <li data-md>
         <p><a data-link-type="dfn" href="#handle-an-input-promise-in-configuration" id="ref-for-handle-an-input-promise-in-configuration③">Handle an input promise in configuration</a> given <var>auctionConfig</var> and <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-directfromsellersignalsheaderadslot" id="ref-for-dom-auctionadconfig-directfromsellersignalsheaderadslot①">directFromSellerSignalsHeaderAdSlot</a></code>"]:</p>
         <p class="note" role="note"><span class="marker">Note:</span> The JavaScript code calling <code class="idl"><a data-link-type="idl" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction⑥">runAdAuction()</a></code> is responsible for <em>not</em> resolving <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-directfromsellersignalsheaderadslot" id="ref-for-dom-auctionadconfig-directfromsellersignalsheaderadslot②">directFromSellerSignalsHeaderAdSlot</a></code>"]
-  until direct from seller signals have been retrieved from one or more <span>`<code><a data-link-type="http-header" href="#http-headerdef-ad-auction-signals" id="ref-for-http-headerdef-ad-auction-signals">Ad-Auction-Signals</a></code>`</span> headers, as resolving this Promise early would cause a race condition in which the worklet
-  might run without the direct from seller signals that it needs. There are two ways that
+  until direct from seller signals have been retrieved from one or more <span>`<code><a data-link-type="http-header" href="#http-headerdef-ad-auction-signals" id="ref-for-http-headerdef-ad-auction-signals">Ad-Auction-Signals</a></code>`</span> headers, as resolving this Promise early would cause a race condition in which the <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner">script runners</a> might run without the direct from seller signals that it needs. There are two ways that
   direct from seller signals can be retrieved. The first is for the JavaScript code to issue a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request" id="ref-for-concept-request①">request</a> whose <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#request-initiator-type" id="ref-for-request-initiator-type①">initiator type</a> is <code>"fetch"</code> and whose <code class="idl"><a data-link-type="idl" href="#dom-requestinit-adauctionheaders" id="ref-for-dom-requestinit-adauctionheaders①">adAuctionHeaders</a></code> option is set to <code>true</code>. The JavaScript code has to resolve <var>config</var>["<code class="idl"><a data-link-type="idl" href="#dom-auctionadconfig-directfromsellersignalsheaderadslot" id="ref-for-dom-auctionadconfig-directfromsellersignalsheaderadslot③">directFromSellerSignalsHeaderAdSlot</a></code>"] after the corresponding
   call to <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#dom-global-fetch" id="ref-for-dom-global-fetch②">fetch()</a></code> has resolved to a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response" id="ref-for-concept-response①">response</a>. The JavaScript
   code can also choose to wait to call <code class="idl"><a data-link-type="idl" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction⑦">runAdAuction()</a></code> until after the
@@ -2572,7 +2573,7 @@ failure, return failure.</p>
             <p>Set <var>topLevelDirectFromSellerSignalsRetrieved</var> to true.</p>
           </ol>
          <li data-md>
-          <p>If <var>compWinnerInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid③">leading bid</a> is not null, then run <a data-link-type="dfn" href="#score-and-rank-a-bid" id="ref-for-score-and-rank-a-bid">score and rank a bid</a> with <var>auctionConfig</var>, <var>compWinnerInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid④">leading bid</a>, <var>leadingBidInfo</var>, <var>decisionLogicScript</var>, null,
+          <p>If <var>compWinnerInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid④">leading bid</a> is not null, then run <a data-link-type="dfn" href="#score-and-rank-a-bid" id="ref-for-score-and-rank-a-bid">score and rank a bid</a> with <var>auctionConfig</var>, <var>compWinnerInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑤">leading bid</a>, <var>leadingBidInfo</var>, <var>decisionLogicScript</var>, null,
 "top-level-auction", null, and <var>topLevelOrigin</var>.</p>
          <li data-md>
           <p>Decrement <var>pendingComponentAuctions</var> by 1.</p>
@@ -2580,7 +2581,7 @@ failure, return failure.</p>
        <li data-md>
         <p>Wait until <var>pendingComponentAuctions</var> is 0.</p>
        <li data-md>
-        <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑤">leading bid</a> is null, return null.</p>
+        <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑥">leading bid</a> is null, return null.</p>
        <li data-md>
         <p>Let <var>winningComponentConfig</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-auction-config" id="ref-for-leading-bid-info-auction-config">auction config</a>.</p>
        <li data-md>
@@ -2603,7 +2604,7 @@ running <a data-link-type="dfn" href="#report-result" id="ref-for-report-result"
        <li data-md>
         <p>Let <var>directFromSellerSignalsForSeller</var> be the result of running <a data-link-type="dfn" href="#get-direct-from-seller-signals-for-a-seller" id="ref-for-get-direct-from-seller-signals-for-a-seller①">get direct from seller signals for a seller</a> given <var>directFromSellerSignals</var>.</p>
        <li data-md>
-        <p>Let <var>directFromSellerSignalsForBuyer</var> be the result of running <a data-link-type="dfn" href="#get-direct-from-seller-signals-for-a-buyer" id="ref-for-get-direct-from-seller-signals-for-a-buyer">get direct from seller signals for a buyer</a> with <var>directFromSellerSignals</var>, and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑥">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group⑤">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③⓪">owner</a>.</p>
+        <p>Let <var>directFromSellerSignalsForBuyer</var> be the result of running <a data-link-type="dfn" href="#get-direct-from-seller-signals-for-a-buyer" id="ref-for-get-direct-from-seller-signals-for-a-buyer">get direct from seller signals for a buyer</a> with <var>directFromSellerSignals</var>, and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑦">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group⑤">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③⓪">owner</a>.</p>
        <li data-md>
         <p>Let « <var>sellerSignals</var>, <var>reportResultBrowserSignals</var> » be the result of running <a data-link-type="dfn" href="#report-result" id="ref-for-report-result①">report result</a> with <var>leadingBidInfo</var>, <var>directFromSellerSignalsForSeller</var>, null, and <var>global</var>.</p>
        <li data-md>
@@ -2869,14 +2870,14 @@ k-anonymous has a higher score than the highest scoring k-anonymous bid, then ca
      <li data-md>
       <p>Wait until both <var>pendingBuyers</var> and <var>pendingAdditionalBids</var> are 0.</p>
      <li data-md>
-      <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑦">leading bid</a> is null, return null.</p>
+      <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑧">leading bid</a> is null, return null.</p>
      <li data-md>
       <p>If <var>topLevelAuctionConfig</var> is null:</p>
       <ol>
        <li data-md>
         <p>Let « <var>sellerSignals</var>, <var>reportResultBrowserSignals</var> » be the result of running <a data-link-type="dfn" href="#report-result" id="ref-for-report-result②">report result</a> with <var>leadingBidInfo</var>, <var>directFromSellerSignalsForSeller</var>, null, and <var>global</var>.</p>
        <li data-md>
-        <p>Let <var>directFromSellerSignalsForWinner</var> be the result of running <a data-link-type="dfn" href="#get-direct-from-seller-signals-for-a-buyer" id="ref-for-get-direct-from-seller-signals-for-a-buyer②">get direct from seller signals for a buyer</a> with <var>directFromSellerSignals</var>, and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑧">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group⑦">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③②">owner</a>.</p>
+        <p>Let <var>directFromSellerSignalsForWinner</var> be the result of running <a data-link-type="dfn" href="#get-direct-from-seller-signals-for-a-buyer" id="ref-for-get-direct-from-seller-signals-for-a-buyer②">get direct from seller signals for a buyer</a> with <var>directFromSellerSignals</var>, and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑨">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group⑦">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③②">owner</a>.</p>
        <li data-md>
         <p>Run <a data-link-type="dfn" href="#report-win" id="ref-for-report-win①">report win</a> with <var>leadingBidInfo</var>, <var>sellerSignals</var>, <var>reportResultBrowserSignals</var>, and <var>directFromSellerSignalsForWinner</var>.</p>
       </ol>
@@ -3108,7 +3109,7 @@ then set <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bi
      <li data-md>
       <p>Let <var>updateLeadingBid</var> be false.</p>
      <li data-md>
-      <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid⑨">leading bid</a> is null, or <var>score</var> is greater than <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-top-score" id="ref-for-leading-bid-info-top-score">top score</a>:</p>
+      <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⓪">leading bid</a> is null, or <var>score</var> is greater than <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-top-score" id="ref-for-leading-bid-info-top-score">top score</a>:</p>
       <ol>
        <li data-md>
         <p>Set <var>updateLeadingBid</var> to true.</p>
@@ -3125,9 +3126,9 @@ then set <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bi
        <li data-md>
         <p>Set <var>updateLeadingBid</var> to true with 1 in <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-top-bids-count" id="ref-for-leading-bid-info-top-bids-count②">top bids count</a> chance.</p>
        <li data-md>
-        <p>If <var>updateLeadingBid</var> is false, then <a data-link-type="dfn" href="#update-highest-scoring-other-bid" id="ref-for-update-highest-scoring-other-bid">update highest scoring other bid</a> with <var>score</var>, <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⓪">leading bid</a>, and <var>leadingBidInfo</var>.</p>
+        <p>If <var>updateLeadingBid</var> is false, then <a data-link-type="dfn" href="#update-highest-scoring-other-bid" id="ref-for-update-highest-scoring-other-bid">update highest scoring other bid</a> with <var>score</var>, <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①①">leading bid</a>, and <var>leadingBidInfo</var>.</p>
        <li data-md>
-        <p>If <var>owner</var> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin④">same origin</a> with <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①①">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group⑨">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③⑤">owner</a>, then set <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-at-most-one-top-bid-owner" id="ref-for-leading-bid-info-at-most-one-top-bid-owner①">at most one top bid owner</a> to false.</p>
+        <p>If <var>owner</var> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin" id="ref-for-same-origin④">same origin</a> with <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①②">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group⑨">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③⑤">owner</a>, then set <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-at-most-one-top-bid-owner" id="ref-for-leading-bid-info-at-most-one-top-bid-owner①">at most one top bid owner</a> to false.</p>
       </ol>
      <li data-md>
       <p>Otherwise if <var>score</var> is greater than or equal to <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-second-highest-score" id="ref-for-leading-bid-info-second-highest-score">second highest score</a>, then <a data-link-type="dfn" href="#update-highest-scoring-other-bid" id="ref-for-update-highest-scoring-other-bid①">update highest scoring other bid</a> with <var>score</var>, <var>bidValue</var>, and <var>leadingBidInfo</var>.</p>
@@ -3135,11 +3136,11 @@ then set <var>generatedBid</var>’s <a data-link-type="dfn" href="#generated-bi
       <p>If <var>updateLeadingBid</var> is true:</p>
       <ol>
        <li data-md>
-        <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①②">leading bid</a> is not null, then <a data-link-type="dfn" href="#update-highest-scoring-other-bid" id="ref-for-update-highest-scoring-other-bid②">update highest scoring other bid</a> with <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-top-score" id="ref-for-leading-bid-info-top-score②">top score</a>, <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①③">leading bid</a>, and <var>leadingBidInfo</var>.</p>
+        <p>If <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①③">leading bid</a> is not null, then <a data-link-type="dfn" href="#update-highest-scoring-other-bid" id="ref-for-update-highest-scoring-other-bid②">update highest scoring other bid</a> with <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-top-score" id="ref-for-leading-bid-info-top-score②">top score</a>, <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①④">leading bid</a>, and <var>leadingBidInfo</var>.</p>
        <li data-md>
         <p>Set <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-top-score" id="ref-for-leading-bid-info-top-score③">top score</a> to <var>score</var>.</p>
        <li data-md>
-        <p>Set <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①④">leading bid</a> to <var>generatedBid</var>.</p>
+        <p>Set <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑤">leading bid</a> to <var>generatedBid</var>.</p>
        <li data-md>
         <p>Set <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-auction-config" id="ref-for-leading-bid-info-auction-config③">auction config</a> to <var>auctionConfig</var>.</p>
        <li data-md>
@@ -3711,9 +3712,9 @@ E.g., "<code>hostname=publisher1.com&amp;keys=key1,key2&amp;interestGroupNames=a
         <p>If <var>bidCurrency</var> is null, then set <var>bidCurrency</var> to the result of <a data-link-type="dfn" href="#look-up-per-buyer-currency" id="ref-for-look-up-per-buyer-currency②">looking up per-buyer currency</a> with <var>config</var> and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-component-seller" id="ref-for-leading-bid-info-component-seller④">component seller</a>.</p>
       </ol>
      <li data-md>
-      <p>Otherwise, set <var>bidCurrency</var> to the result of <a data-link-type="dfn" href="#look-up-per-buyer-currency" id="ref-for-look-up-per-buyer-currency③">looking up per-buyer currency</a> with <var>config</var> and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑤">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group①①">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③⑦">owner</a>.</p>
+      <p>Otherwise, set <var>bidCurrency</var> to the result of <a data-link-type="dfn" href="#look-up-per-buyer-currency" id="ref-for-look-up-per-buyer-currency③">looking up per-buyer currency</a> with <var>config</var> and <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑥">leading bid</a>'s <a data-link-type="dfn" href="#generated-bid-interest-group" id="ref-for-generated-bid-interest-group①①">interest group</a>'s <a data-link-type="dfn" href="#interest-group-owner" id="ref-for-interest-group-owner③⑦">owner</a>.</p>
      <li data-md>
-      <p>Let <var>winner</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑥">leading bid</a>.</p>
+      <p>Let <var>winner</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑦">leading bid</a>.</p>
      <li data-md>
       <p>Let <var>sellerCurrency</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-auction-config" id="ref-for-leading-bid-info-auction-config⑤">auction config</a>'s <a data-link-type="dfn" href="#auction-config-seller-currency" id="ref-for-auction-config-seller-currency⑤">seller currency</a>.</p>
      <li data-md>
@@ -3808,7 +3809,7 @@ a <code class="idl"><a data-link-type="idl" href="#dictdef-reportingbrowsersigna
      <li data-md>
       <p>Let <var>config</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-auction-config" id="ref-for-leading-bid-info-auction-config⑥">auction config</a>.</p>
      <li data-md>
-      <p>Let <var>winner</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑦">leading bid</a>.</p>
+      <p>Let <var>winner</var> be <var>leadingBidInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑧">leading bid</a>.</p>
      <li data-md>
       <p>Let <var>perBuyerSignals</var> be <var>config</var>’s <a data-link-type="dfn" href="#auction-config-per-buyer-signals" id="ref-for-auction-config-per-buyer-signals⑧">per buyer signals</a>.</p>
      <li data-md>
@@ -3896,7 +3897,7 @@ to <var>winner</var>’s <a data-link-type="dfn" href="#generated-bid-interest-g
      <li data-md>
       <p>Let <var>auctionReportInfo</var> be a new <a data-link-type="dfn" href="#auction-report-info" id="ref-for-auction-report-info③">auction report info</a>.</p>
      <li data-md>
-      <p>Let <var>winningBid</var> be <var>winnerInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑧">leading bid</a> if <var>winnerInfo</var> is
+      <p>Let <var>winningBid</var> be <var>winnerInfo</var>’s <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑨">leading bid</a> if <var>winnerInfo</var> is
 not null, null otherwise.</p>
      <li data-md>
       <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate③①">For each</a> <var>generatedBid</var> of <var>generatedBids</var>:</p>
@@ -4773,7 +4774,7 @@ will maintain the count over the chosen duration and compare the count to the ch
    </div>
    <h2 class="heading settled" data-level="8" id="script-runners"><span class="secno">8. </span><span class="content">Script Runners</span><a class="self-link" href="#script-runners"></a></h2>
    <p><em>This introduction sub-section is non-normative</em>.</p>
-   <p>This specification defines a new type of script execution environment called a <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner">script runner</a>. On
+   <p>This specification defines a new type of script execution environment called a <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner①">script runner</a>. On
 the surface, these are similar to <a href="https://html.spec.whatwg.org/C#worklets-intro">Worklets</a> in that they too are used for running scripts independent of the <em>main</em> execution environment with a
 flexible implementation model.</p>
    <p>However, some key differences from traditional Worklets motivate us to create a new kind of script
@@ -6223,8 +6224,9 @@ prevents a leak of the user’s ad interest group membership to the server.</p>
    <h2 class="heading settled" data-level="13" id="fetch-patch-for-auction-headers"><span class="secno">13. </span><span class="content">Fetch Patch for Auction Headers</span><a class="self-link" href="#fetch-patch-for-auction-headers"></a></h2>
    <p>This section specifies a manner by which some data, including <a data-link-type="dfn" href="#additional-bids" id="ref-for-additional-bids①③">additional bids</a> and <a data-link-type="dfn" href="#direct-from-seller-signals" id="ref-for-direct-from-seller-signals④">direct from seller signals</a>, may be provided to auctions such that the data is only used within
 their intended auction.</p>
-   <p>Any <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document" id="ref-for-document②">Document</a></code> in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#traversable-navigable" id="ref-for-traversable-navigable③">traversable navigable</a> may run a Protected Audience auction (with <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator①⓪">navigator</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction①②">runAdAuction()</a></code>) whose worklet functions receive signal objects
-derived from JSON from an <span>`<code><a data-link-type="http-header" href="#http-headerdef-ad-auction-signals" id="ref-for-http-headerdef-ad-auction-signals①">Ad-Auction-Signals</a></code>`</span> header, or <a data-link-type="dfn" href="#additional-bids" id="ref-for-additional-bids①④">additional bids</a> derived from an <span>`<code><a data-link-type="http-header" href="#http-headerdef-ad-auction-additional-bid" id="ref-for-http-headerdef-ad-auction-additional-bid①">Ad-Auction-Additional-Bid</a></code>`</span> header, captured by a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#dom-global-fetch" id="ref-for-dom-global-fetch④">fetch()</a></code> call
+   <p>Any <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document" id="ref-for-document②">Document</a></code> in a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#traversable-navigable" id="ref-for-traversable-navigable③">traversable navigable</a> may run a Protected Audience auction (with <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/system-state.html#dom-navigator" id="ref-for-dom-navigator①⓪">navigator</a></code>.<code class="idl"><a data-link-type="idl" href="#dom-navigator-runadauction" id="ref-for-dom-navigator-runadauction①②">runAdAuction()</a></code>) whose <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner②">script runners</a> functions receive signal
+objects derived from JSON from an <span>`<code><a data-link-type="http-header" href="#http-headerdef-ad-auction-signals" id="ref-for-http-headerdef-ad-auction-signals①">Ad-Auction-Signals</a></code>`</span> header, or <a data-link-type="dfn" href="#additional-bids" id="ref-for-additional-bids①④">additional bids</a> derived from
+an <span>`<code><a data-link-type="http-header" href="#http-headerdef-ad-auction-additional-bid" id="ref-for-http-headerdef-ad-auction-additional-bid①">Ad-Auction-Additional-Bid</a></code>`</span> header, captured by a <code class="idl"><a data-link-type="idl" href="https://fetch.spec.whatwg.org/#dom-global-fetch" id="ref-for-dom-global-fetch④">fetch()</a></code> call
 (using the <code class="idl"><a data-link-type="idl" href="#dom-requestinit-adauctionheaders" id="ref-for-dom-requestinit-adauctionheaders②">adAuctionHeaders</a></code> option) initiated by any <em>other</em> <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document" id="ref-for-document③">Document</a></code> in the <em>same</em> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#traversable-navigable" id="ref-for-traversable-navigable④">traversable navigable</a>, or from an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#navigate-an-iframe-or-frame" id="ref-for-navigate-an-iframe-or-frame②">iframe navigation</a> request (using the <code><a data-link-type="element-sub" href="#element-attrdef-iframe-adauctionheaders" id="ref-for-element-attrdef-iframe-adauctionheaders②">adauctionheaders</a></code> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/dom.html#concept-element-attributes" id="ref-for-concept-element-attributes②">content attribute</a> on the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element" id="ref-for-the-iframe-element">iframe</a></code> element).</p>
    <div class="algorithm" data-algorithm="fetch per traversable navigable structures patch">
      Modify <a data-link-type="biblio" href="#biblio-fetch" title="Fetch Standard">[FETCH]</a>'s <a href="https://fetch.spec.whatwg.org/#infrastructure"><cite>Fetch</cite> § 2 Infrastructure</a> to add a new section called "Per Traversable Navigable
@@ -6806,7 +6808,7 @@ Owners of interest groups allowed to participate in the auction. Each <a data-li
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-auction-signals">auction signals</dfn>
     <dd data-md>
      <p>Null, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string⑥⑨">string</a>, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①④">Promise</a></code>, or failure.
-Opaque JSON data passed to both sellers' and buyers' <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner①">script runners</a>.</p>
+Opaque JSON data passed to both sellers' and buyers' <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner③">script runners</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-requested-size">requested size</dfn>
     <dd data-md>
      <p>Null or an <a data-link-type="dfn" href="#ad-size" id="ref-for-ad-size②">ad size</a>, initially null.
@@ -6818,7 +6820,7 @@ The sizes of all frames for ads being selected by any auction in the frame.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-seller-signals">seller signals</dfn>
     <dd data-md>
      <p>Null, a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string⑦⓪">string</a>, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①⑤">Promise</a></code>, or failure.
-Opaque JSON data passed to the seller’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner②">script runner</a>.</p>
+Opaque JSON data passed to the seller’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner④">script runner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-seller-timeout">seller timeout</dfn>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://w3c.github.io/hr-time/#dfn-duration" id="ref-for-dfn-duration⑤">duration</a> in milliseconds, initially 50 milliseconds.
@@ -6828,7 +6830,7 @@ the timeout, the bid being scored is not considered further.</p>
     <dd data-md>
      <p>Null, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①⑥">Promise</a></code>, failure, or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④④">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys②⓪">keys</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin③⑨">origins</a> and
 whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values②⓪">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string⑦①">strings</a>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys②①">Keys</a> are buyers whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme" id="ref-for-concept-origin-scheme⑨">schemes</a> must be "<code>https</code>". <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values②①">Values</a> are
-opaque JSON data passed to corresponding buyer’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner③">script runner</a>.</p>
+opaque JSON data passed to corresponding buyer’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner⑤">script runner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="auction config" data-dfn-type="dfn" data-noexport id="auction-config-per-buyer-timeouts">per buyer timeouts</dfn>
     <dd data-md>
      <p>Null, a <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①⑦">Promise</a></code>, failure, or an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map④⑤">ordered map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys②②">keys</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin④⓪">origins</a> and
@@ -7145,15 +7147,15 @@ won it, and was then scored by the top-level seller. Set by top-level seller’s
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="direct from seller signals" data-dfn-type="dfn" data-noexport id="direct-from-seller-signals-auction-signals">auction signals</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string⑦⑨">string</a>.
-Opaque JSON data passed to both buyers' and the seller’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner④">script runners</a>.</p>
+Opaque JSON data passed to both buyers' and the seller’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner⑥">script runners</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="direct from seller signals" data-dfn-type="dfn" data-noexport id="direct-from-seller-signals-seller-signals">seller signals</dfn>
     <dd data-md>
      <p>Null or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string⑧⓪">string</a>.
-Opaque JSON data passed to the seller’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner⑤">script runner</a>.</p>
+Opaque JSON data passed to the seller’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner⑦">script runner</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="direct from seller signals" data-dfn-type="dfn" data-noexport id="direct-from-seller-signals-per-buyer-signals">per buyer signals</dfn>
     <dd data-md>
      <p>A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#ordered-map" id="ref-for-ordered-map⑤⑥">map</a> whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys③⑥">keys</a> are <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑤⓪">origins</a> and whose <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values③⑥">values</a> are <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string⑧①">strings</a>. <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-keys" id="ref-for-map-getting-the-keys③⑦">Keys</a> are buyers whose <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-scheme" id="ref-for-concept-origin-scheme①④">scheme</a> must be "<code>https</code>". <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-getting-the-values" id="ref-for-map-getting-the-values③⑦">Values</a> are opaque
-JSON data passed to corresponding buyer’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner⑥">script runner</a>.</p>
+JSON data passed to corresponding buyer’s <a data-link-type="dfn" href="#script-runner" id="ref-for-script-runner⑧">script runner</a>.</p>
    </dl>
    <h3 class="heading settled" data-level="14.7" id="score-ad-output-header"><span class="secno">14.7. </span><span class="content">Score ad output</span><a class="self-link" href="#score-ad-output-header"></a></h3>
    <p>The output of running a Protected Audience <code>scoreAd()</code> script, is represented using the following type:</p>
@@ -7234,7 +7236,7 @@ group owner.</p>
      <p>Null or a <a data-link-type="dfn" href="#generated-bid" id="ref-for-generated-bid①⑤">generate bid</a>, initially null. The leading bid of the auction so far.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="leading bid info" data-dfn-type="dfn" data-noexport id="leading-bid-info-auction-config">auction config</dfn>
     <dd data-md>
-     <p>An <a data-link-type="dfn" href="#auction-config" id="ref-for-auction-config②②">auction config</a>. The auction config of the auction which generated this <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid①⑨">leading bid</a>.</p>
+     <p>An <a data-link-type="dfn" href="#auction-config" id="ref-for-auction-config②②">auction config</a>. The auction config of the auction which generated this <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid②⓪">leading bid</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="leading bid info" data-dfn-type="dfn" data-noexport id="leading-bid-info-second-highest-score">second highest score</dfn>
     <dd data-md>
      <p>A <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-double" id="ref-for-idl-double④③">double</a></code>, initially 0.0. The second highest score so far. If more than one bids tie with <code>top score</code>, this will be set to <code>top score</code>.</p>
@@ -7258,7 +7260,7 @@ of the top-level seller’s <code>reportResult()</code> method. Only set for com
 otherwise.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="leading bid info" data-dfn-type="dfn" data-noexport id="leading-bid-info-component-seller">component seller</dfn>
     <dd data-md>
-     <p>Null or an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑤③">origin</a>. Seller in component auction which generated this <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid②⓪">leading bid</a>. Only set for the top level auction when component auctions are
+     <p>Null or an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin⑤③">origin</a>. Seller in component auction which generated this <a data-link-type="dfn" href="#leading-bid-info-leading-bid" id="ref-for-leading-bid-info-leading-bid②①">leading bid</a>. Only set for the top level auction when component auctions are
 present, null otherwise.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="leading bid info" data-dfn-type="dfn" data-noexport id="leading-bid-info-bidding-data-version">bidding data version</dfn>
     <dd data-md>
@@ -9600,7 +9602,7 @@ let dfnPanelData = {
 "leading-bid-info-highest-scoring-other-bid": {"dfnID":"leading-bid-info-highest-scoring-other-bid","dfnText":"highest scoring other bid","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-highest-scoring-other-bid"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid\u2460"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid\u2461"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid\u2462"}],"title":"4.1. runAdAuction()"}],"url":"#leading-bid-info-highest-scoring-other-bid"},
 "leading-bid-info-highest-scoring-other-bid-owner": {"dfnID":"leading-bid-info-highest-scoring-other-bid-owner","dfnText":"highest scoring other bid owner","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-highest-scoring-other-bid-owner"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid-owner\u2460"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid-owner\u2461"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid-owner\u2462"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid-owner\u2463"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bid-owner\u2464"}],"title":"4.1. runAdAuction()"}],"url":"#leading-bid-info-highest-scoring-other-bid-owner"},
 "leading-bid-info-highest-scoring-other-bids-count": {"dfnID":"leading-bid-info-highest-scoring-other-bids-count","dfnText":"highest scoring other bids count","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-highest-scoring-other-bids-count"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bids-count\u2460"},{"id":"ref-for-leading-bid-info-highest-scoring-other-bids-count\u2461"}],"title":"4.1. runAdAuction()"}],"url":"#leading-bid-info-highest-scoring-other-bids-count"},
-"leading-bid-info-leading-bid": {"dfnID":"leading-bid-info-leading-bid","dfnText":"leading bid","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-leading-bid"},{"id":"ref-for-leading-bid-info-leading-bid\u2460"},{"id":"ref-for-leading-bid-info-leading-bid\u2461"},{"id":"ref-for-leading-bid-info-leading-bid\u2462"},{"id":"ref-for-leading-bid-info-leading-bid\u2463"},{"id":"ref-for-leading-bid-info-leading-bid\u2464"},{"id":"ref-for-leading-bid-info-leading-bid\u2465"},{"id":"ref-for-leading-bid-info-leading-bid\u2466"},{"id":"ref-for-leading-bid-info-leading-bid\u2467"},{"id":"ref-for-leading-bid-info-leading-bid\u2468"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u24ea"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2460"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2461"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2462"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2463"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2464"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2465"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2466"}],"title":"4.1. runAdAuction()"},{"refs":[{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2467"}],"title":"5.1. forDebuggingOnly"},{"refs":[{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2468"},{"id":"ref-for-leading-bid-info-leading-bid\u2461\u24ea"}],"title":"14.8. Leading bid info"}],"url":"#leading-bid-info-leading-bid"},
+"leading-bid-info-leading-bid": {"dfnID":"leading-bid-info-leading-bid","dfnText":"leading bid","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-leading-bid"},{"id":"ref-for-leading-bid-info-leading-bid\u2460"},{"id":"ref-for-leading-bid-info-leading-bid\u2461"},{"id":"ref-for-leading-bid-info-leading-bid\u2462"},{"id":"ref-for-leading-bid-info-leading-bid\u2463"},{"id":"ref-for-leading-bid-info-leading-bid\u2464"},{"id":"ref-for-leading-bid-info-leading-bid\u2465"},{"id":"ref-for-leading-bid-info-leading-bid\u2466"},{"id":"ref-for-leading-bid-info-leading-bid\u2467"},{"id":"ref-for-leading-bid-info-leading-bid\u2468"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u24ea"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2460"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2461"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2462"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2463"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2464"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2465"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2466"},{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2467"}],"title":"4.1. runAdAuction()"},{"refs":[{"id":"ref-for-leading-bid-info-leading-bid\u2460\u2468"}],"title":"5.1. forDebuggingOnly"},{"refs":[{"id":"ref-for-leading-bid-info-leading-bid\u2461\u24ea"},{"id":"ref-for-leading-bid-info-leading-bid\u2461\u2460"}],"title":"14.8. Leading bid info"}],"url":"#leading-bid-info-leading-bid"},
 "leading-bid-info-scoring-data-version": {"dfnID":"leading-bid-info-scoring-data-version","dfnText":"scoring data version","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-scoring-data-version"},{"id":"ref-for-leading-bid-info-scoring-data-version\u2460"}],"title":"4.1. runAdAuction()"}],"url":"#leading-bid-info-scoring-data-version"},
 "leading-bid-info-second-highest-score": {"dfnID":"leading-bid-info-second-highest-score","dfnText":"second highest score","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-second-highest-score"},{"id":"ref-for-leading-bid-info-second-highest-score\u2460"},{"id":"ref-for-leading-bid-info-second-highest-score\u2461"},{"id":"ref-for-leading-bid-info-second-highest-score\u2462"}],"title":"4.1. runAdAuction()"}],"url":"#leading-bid-info-second-highest-score"},
 "leading-bid-info-seller-reporting-result": {"dfnID":"leading-bid-info-seller-reporting-result","dfnText":"seller reporting result","external":false,"refSections":[{"refs":[{"id":"ref-for-leading-bid-info-seller-reporting-result"},{"id":"ref-for-leading-bid-info-seller-reporting-result\u2460"},{"id":"ref-for-leading-bid-info-seller-reporting-result\u2461"},{"id":"ref-for-leading-bid-info-seller-reporting-result\u2462"},{"id":"ref-for-leading-bid-info-seller-reporting-result\u2463"}],"title":"4.1. runAdAuction()"}],"url":"#leading-bid-info-seller-reporting-result"},
@@ -9650,7 +9652,7 @@ let dfnPanelData = {
 "sample-a-debug-report": {"dfnID":"sample-a-debug-report","dfnText":"sample a debug report","external":false,"refSections":[{"refs":[{"id":"ref-for-sample-a-debug-report"}],"title":"5.1. forDebuggingOnly"}],"url":"#sample-a-debug-report"},
 "sampling-rate": {"dfnID":"sampling-rate","dfnText":"sampling rate","external":false,"refSections":[{"refs":[{"id":"ref-for-sampling-rate"},{"id":"ref-for-sampling-rate\u2460"}],"title":"5.1.1. Downsampling"}],"url":"#sampling-rate"},
 "score-and-rank-a-bid": {"dfnID":"score-and-rank-a-bid","dfnText":"score and rank a bid","external":false,"refSections":[{"refs":[{"id":"ref-for-score-and-rank-a-bid"},{"id":"ref-for-score-and-rank-a-bid\u2460"},{"id":"ref-for-score-and-rank-a-bid\u2461"},{"id":"ref-for-score-and-rank-a-bid\u2462"},{"id":"ref-for-score-and-rank-a-bid\u2463"}],"title":"4.1. runAdAuction()"}],"url":"#score-and-rank-a-bid"},
-"script-runner": {"dfnID":"script-runner","dfnText":"script runner","external":false,"refSections":[{"refs":[{"id":"ref-for-script-runner"}],"title":"8. Script Runners"},{"refs":[{"id":"ref-for-script-runner\u2460"},{"id":"ref-for-script-runner\u2461"},{"id":"ref-for-script-runner\u2462"}],"title":"14.3. Auction config"},{"refs":[{"id":"ref-for-script-runner\u2463"},{"id":"ref-for-script-runner\u2464"},{"id":"ref-for-script-runner\u2465"}],"title":"14.6. Direct from seller signals"}],"url":"#script-runner"},
+"script-runner": {"dfnID":"script-runner","dfnText":"script runner","external":false,"refSections":[{"refs":[{"id":"ref-for-script-runner"}],"title":"4.1. runAdAuction()"},{"refs":[{"id":"ref-for-script-runner\u2460"}],"title":"8. Script Runners"},{"refs":[{"id":"ref-for-script-runner\u2461"}],"title":"13. Fetch Patch for Auction Headers"},{"refs":[{"id":"ref-for-script-runner\u2462"},{"id":"ref-for-script-runner\u2463"},{"id":"ref-for-script-runner\u2464"}],"title":"14.3. Auction config"},{"refs":[{"id":"ref-for-script-runner\u2465"},{"id":"ref-for-script-runner\u2466"},{"id":"ref-for-script-runner\u2467"}],"title":"14.6. Direct from seller signals"}],"url":"#script-runner"},
 "send-report": {"dfnID":"send-report","dfnText":"send report","external":false,"refSections":[{"refs":[{"id":"ref-for-send-report"},{"id":"ref-for-send-report\u2460"},{"id":"ref-for-send-report\u2461"},{"id":"ref-for-send-report\u2462"},{"id":"ref-for-send-report\u2463"},{"id":"ref-for-send-report\u2464"}],"title":"4.1. runAdAuction()"}],"url":"#send-report"},
 "serialize-a-currency-tag": {"dfnID":"serialize-a-currency-tag","dfnText":"serialize a currency tag","external":false,"refSections":[{"refs":[{"id":"ref-for-serialize-a-currency-tag"},{"id":"ref-for-serialize-a-currency-tag\u2460"}],"title":"4.1. runAdAuction()"}],"url":"#serialize-a-currency-tag"},
 "serialize-a-url": {"dfnID":"serialize-a-url","dfnText":"serialize a URL","external":false,"refSections":[{"refs":[{"id":"ref-for-serialize-a-url"},{"id":"ref-for-serialize-a-url\u2460"},{"id":"ref-for-serialize-a-url\u2461"},{"id":"ref-for-serialize-a-url\u2462"}],"title":"4.1. runAdAuction()"}],"url":"#serialize-a-url"},
